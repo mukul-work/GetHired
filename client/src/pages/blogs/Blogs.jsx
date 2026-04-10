@@ -16,6 +16,7 @@ function Blogs() {
 
   return (
     <div>
+        <div className="text-red-500">Test</div>
       <input
         type="text"
         placeholder="Search blogs..."
