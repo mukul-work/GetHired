@@ -3,6 +3,7 @@ import Blogs from './pages/blogs/Blogs';
 import BlogPost from './pages/blogs/BlogPost';
 import Home from './pages/Home';
 import CompanyHome from './pages/CompanyHome';
+import CompanyDetails from './components/CompanyDetails';
 
 export default function App(){
   return(
@@ -12,6 +13,7 @@ export default function App(){
         <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/blogs/:id' element={<BlogPost/>}/>
         <Route path='/companies' element={<CompanyHome/>}/>
+        <Route path='/companies/:id' element={<CompanyDetails/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -1,7 +1,10 @@
-export default function CompanyCard({ company, onClick }) {
+import { useNavigate } from "react-router-dom"
+
+export default function CompanyCard({ company}) {
+  const navigate = useNavigate();
   return (
     <div
-      onClick={() => onClick(company)}
+      onClick={() => navigate(`/companies/${company.id}`)}
       className="cursor-pointer p-4 bg-white rounded-xl shadow hover:shadow-lg transition"
     >
       <img src={company.logo} alt={company.name} className="h-10 mb-2" />
