@@ -2,6 +2,7 @@ export const companies = [
   {
     id: 1,
     name: "Google",
+    nameNeeded: false,
     logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
     studentsPlaced: 25,
     offers: 30,
@@ -21,6 +22,7 @@ export const companies = [
   {
     id: 2,
     name: "Amazon",
+    nameNeeded: false,
     logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
     studentsPlaced: 40,
     offers: 50,
