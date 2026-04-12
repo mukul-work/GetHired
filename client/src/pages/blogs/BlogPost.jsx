@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import blogs from '../../data/blogs.js';
 
+
 function BlogPost() {
   const { id } = useParams();
   const navigate = useNavigate();

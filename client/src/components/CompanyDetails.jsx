@@ -7,8 +7,13 @@ import {
   FaTrophy,
   FaBook,
 } from "react-icons/fa"
+import { useNavigate, useParams } from "react-router-dom"
+import { companies } from "../data/companies";
 
-export default function CompanyDetails({ company, onBack }) {
+export default function CompanyDetails() {
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const company = companies.find(c => c.id === Number(id));
   const stats = [
   {
     label: "Students Placed",
@@ -49,7 +54,7 @@ export default function CompanyDetails({ company, onBack }) {
 
   return (
     <div className="p-6">
-      <button onClick={onBack} className="mb-4 text-blue-500">
+      <button onClick={() => navigate('/companies')} className="mb-4 text-blue-500">
         ← Back
       </button>
 
@@ -86,6 +91,7 @@ export default function CompanyDetails({ company, onBack }) {
           )
         })}
       </div>
+
 
       {/* Difficulty */}
       <div className="mt-6">
