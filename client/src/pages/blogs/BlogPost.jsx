@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getBlog } from "../../services/api.js";
 import localBlogs from "../../data/blogs.js";
 
+
 function BlogPost() {
   const { id } = useParams();
   const navigate = useNavigate();
