@@ -1,27 +1,102 @@
-const recent = {
-  year: '2024',
-  topCompany: 'Google',
-  topBranch: 'CSE',
-  totalOffers: 320,
-};
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  getPlacementStats,
+  getTopPerformers,
+  getBranchChart,
+} from "../../services/api";
 
 function RecentSeason() {
+  const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    highestPackage: 42,
+    totalPlacements: 350,
+  });
+  const [topCompany, setTopCompany] = useState("Google");
+  const [topBranch, setTopBranch] = useState("CSE");
+  const [topPerformer, setTopPerformer] = useState(null);
+
+  useEffect(() => {
+    Promise.allSettled([
+      getPlacementStats(),
+      getTopPerformers(),
+      getBranchChart(),
+    ]).then(([s, p, b]) => {
+      if (s.status === "fulfilled") setStats(s.value.data);
+      if (p.status === "fulfilled" && p.value.data.length > 0) {
+        const perf = p.value.data[0];
+        setTopPerformer(perf);
+        setTopCompany(perf.company);
+      }
+      if (b.status === "fulfilled" && b.value.data.length > 0)
+        setTopBranch(b.value.data[0].branch);
+    });
+  }, []);
+
+  const cards = [
+    { label: "Top Company", value: topCompany, icon: "🏢" },
+    { label: "Top Branch", value: topBranch, icon: "🎓" },
+    {
+      label: "Total Offers (2024)",
+      value: `${stats.totalPlacements}+`,
+      icon: "📋",
+    },
+    {
+      label: "Highest Package",
+      value: `${stats.highestPackage} LPA`,
+      icon: "💰",
+    },
+  ];
+
   return (
-    <div className="px-8 py-10">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Recent Placement Season ({recent.year})</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="border border-gray-200 rounded-xl p-5 text-center">
-          <p className="text-gray-400 text-sm mb-1">Top Company</p>
-          <p className="text-xl font-semibold text-gray-800">{recent.topCompany}</p>
+    <div className="px-6 sm:px-10 py-12 bg-gray-50">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800">
+              Recent Placement Season
+            </h2>
+            <p className="text-gray-500 text-sm mt-0.5">
+              Highlights from the 2024 placement drive
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="text-yellow-600 text-sm font-medium hover:underline hidden sm:block"
+          >
+            Full Stats →
+          </button>
         </div>
-        <div className="border border-gray-200 rounded-xl p-5 text-center">
-          <p className="text-gray-400 text-sm mb-1">Top Branch</p>
-          <p className="text-xl font-semibold text-gray-800">{recent.topBranch}</p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {cards.map((card) => (
+            <div
+              key={card.label}
+              className="bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm"
+            >
+              <span className="text-2xl mb-2 block">{card.icon}</span>
+              <p className="text-lg font-bold text-gray-800">{card.value}</p>
+              <p className="text-gray-500 text-xs mt-1">{card.label}</p>
+            </div>
+          ))}
         </div>
-        <div className="border border-gray-200 rounded-xl p-5 text-center">
-          <p className="text-gray-400 text-sm mb-1">Total Offers</p>
-          <p className="text-xl font-semibold text-gray-800">{recent.totalOffers}</p>
-        </div>
+
+        {topPerformer && (
+          <div className="mt-4 bg-yellow-50 border border-yellow-100 rounded-2xl p-4 flex items-center gap-4">
+            <span className="text-3xl">🏆</span>
+            <div>
+              <p className="text-sm font-bold text-gray-800">
+                Top Performer — {topPerformer.studentName}
+              </p>
+              <p className="text-xs text-gray-500">
+                {topPerformer.branch} · {topPerformer.company} ·{" "}
+                <span className="text-green-600 font-semibold">
+                  {topPerformer.package} LPA
+                </span>
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
