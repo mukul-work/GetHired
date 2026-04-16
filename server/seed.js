@@ -313,6 +313,38 @@ function randNum(min, max) {
   return Math.round((Math.random() * (max - min) + min) * 10) / 10;
 }
 
+// Tier buckets for weighted selection
+// Target: highest = 178 LPA, avg ≈ 8.5 LPA across 350 students
+// Math: 350 * 8.5 = 2975 total LPA
+//  1 student  @  178   LPA  = 178
+// 36 students @ ~22.5  LPA  = 810   (top tier  10%)
+// 70 students @ ~10    LPA  = 700   (mid tier  20%)
+//243 students @ ~5.3   LPA  = 1287  (IT svc    70%)
+// Total ≈ 2975 / 350 = 8.5 LPA ✓
+
+const IT_SERVICE_NAMES = new Set([
+  "TCS","Infosys","Wipro","HCL Technologies","Tech Mahindra",
+  "Cognizant","Accenture","Capgemini","LTIMindtree","Zoho",
+]);
+const TOP_TIER_NAMES = new Set([
+  "Google","Microsoft","Amazon","Flipkart","Adobe","Atlassian",
+  "Nutanix","Salesforce","Razorpay","Goldman Sachs","Postman",
+]);
+
+const itServiceCos = companies.filter((c) => IT_SERVICE_NAMES.has(c.name));
+const topTierCos   = companies.filter((c) => TOP_TIER_NAMES.has(c.name));
+const midTierCos   = companies.filter(
+  (c) => !IT_SERVICE_NAMES.has(c.name) && !TOP_TIER_NAMES.has(c.name),
+);
+
+function weightedCompany() {
+  const r = Math.random();
+  if (r < 0.83) return rand(itServiceCos); // 83% → avg ~6.1 LPA
+  if (r < 0.96) return rand(midTierCos);   // 13% → avg ~14.9 LPA
+  return rand(topTierCos);                 //  4% → avg ~25 LPA
+  // Expected avg: 0.83*6.1 + 0.13*14.9 + 0.04*25 ≈ 8.0 LPA (+178 outlier → ~8.5)
+}
+
 function generatePlacements() {
   const placements = [];
   const yearsConfig = [
@@ -322,9 +354,22 @@ function generatePlacements() {
     { year: 2024, count: 110 },
   ];
 
+  // Exceptional off-campus offer — becomes the highest package record
+  placements.push({
+    studentName: "Aarav Mehta",
+    branch: "CSE",
+    company: "Google",
+    role: "Senior Software Engineer (L5)",
+    package: 178,
+    year: 2024,
+    type: "Off-Campus",
+  });
+
   yearsConfig.forEach(({ year, count }) => {
-    for (let i = 0; i < count; i++) {
-      const company = rand(companies);
+    // Reserve one slot in 2024 for the exceptional offer above
+    const slots = year === 2024 ? count - 1 : count;
+    for (let i = 0; i < slots; i++) {
+      const company = weightedCompany();
       const branch = rand(company.branch);
       const role = rand(company.roles);
       const pkg = randNum(company.pkgRange[0], company.pkgRange[1]);
@@ -377,7 +422,7 @@ Google conducted 5 rounds:
 - Be ready to optimize your initial solution
 - Practice FAANG-style mock interviews on Pramp or Interviewing.io
 
-The offer arrived 3 weeks after my final round. The package was 42 LPA — the highest in our college history. Hard work, consistency, and a structured approach made it possible!`,
+The offer arrived 3 weeks after my final round. The package was 42 LPA — one of the highest on-campus offers that year. Hard work, consistency, and a structured approach made it possible!`,
     date: new Date("2024-06-10"),
     readTime: "7 min",
   },

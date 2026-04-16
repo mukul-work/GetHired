@@ -38,14 +38,17 @@ router.post("/upload", protect, upload.single("file"), async (req, res) => {
         stream
           .pipe(csvParser())
           .on("data", (row) => {
+            // Normalize keys to lower-case for case-insensitive matching
+            const r = {};
+            Object.keys(row).forEach((k) => { r[k.trim().toLowerCase()] = row[k]; });
             records.push({
-              studentName: row.studentName || row.name || "",
-              branch: row.branch || "",
-              company: row.company || "",
-              role: row.role || "",
-              package: parseFloat(row.package || row.pkg || 0),
-              year: parseInt(row.year || new Date().getFullYear()),
-              type: row.type || "On-Campus",
+              studentName: r.studentname || r.student_name || r.name || r.student || "",
+              branch: r.branch || r.dept || r.department || "",
+              company: r.company || r.organisation || r.organization || "",
+              role: r.role || r.designation || r.position || r.jobrole || r.job_role || "",
+              package: parseFloat(r.package || r.pkg || r.ctc || r.salary || 0),
+              year: parseInt(r.year || r.batch || r.passingyear || new Date().getFullYear()),
+              type: r.type || r.placementtype || "On-Campus",
             });
           })
           .on("end", resolve)
@@ -55,15 +58,20 @@ router.post("/upload", protect, upload.single("file"), async (req, res) => {
       const wb = XLSX.read(req.file.buffer, { type: "buffer" });
       const ws = wb.Sheets[wb.SheetNames[0]];
       const rows = XLSX.utils.sheet_to_json(ws);
-      records = rows.map((row) => ({
-        studentName: row.studentName || row.name || "",
-        branch: row.branch || "",
-        company: row.company || "",
-        role: row.role || "",
-        package: parseFloat(row.package || row.pkg || 0),
-        year: parseInt(row.year || new Date().getFullYear()),
-        type: row.type || "On-Campus",
-      }));
+      records = rows.map((row) => {
+        // Normalize keys to lower-case for case-insensitive matching
+        const r = {};
+        Object.keys(row).forEach((k) => { r[k.trim().toLowerCase()] = row[k]; });
+        return {
+          studentName: r.studentname || r.student_name || r.name || r.student || "",
+          branch: r.branch || r.dept || r.department || "",
+          company: r.company || r.organisation || r.organization || "",
+          role: r.role || r.designation || r.position || r.jobrole || r.job_role || "",
+          package: parseFloat(r.package || r.pkg || r.ctc || r.salary || 0),
+          year: parseInt(r.year || r.batch || r.passingyear || new Date().getFullYear()),
+          type: r.type || r.placementtype || "On-Campus",
+        };
+      });
     } else {
       return res
         .status(400)
