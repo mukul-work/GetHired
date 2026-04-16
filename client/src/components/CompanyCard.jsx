@@ -4,7 +4,7 @@ export default function CompanyCard({ company}) {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/companies/${company.id}`)}
+      onClick={() => navigate(`/recruiters/${company.id}`)}
       className="cursor-pointer p-4 bg-white rounded-xl shadow hover:shadow-lg transition"
     >
       <img src={company.logo} alt={company.name} className="h-10 mb-2" />
