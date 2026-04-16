@@ -10,13 +10,12 @@ import { protect } from "../middleware/auth.js";
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
-const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
-
 // POST /api/admin/login
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
+  const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+  const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
   if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: "1d" });
     res.json({ token });
