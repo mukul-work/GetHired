@@ -8,6 +8,7 @@ import Blogs from "./pages/blogs/Blogs";
 import BlogPost from "./pages/blogs/BlogPost";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
+import CompanyDetails from "./components/CompanyDetails";
 
 export default function App() {
   return (
@@ -20,6 +21,8 @@ export default function App() {
           <Route path="/recruiters" element={<Recruiters />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:id" element={<BlogPost />} />
+          <Route path="/recruiters" element={<Recruiters/>}></Route>
+          <Route path="/recruiters/:id" element={<CompanyDetails/>}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
