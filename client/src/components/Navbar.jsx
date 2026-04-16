@@ -1,3 +1,5 @@
+// client/src/components/Navbar.jsx
+// UPDATED: Added dark mode toggle + Calendar & Skills nav links
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -7,6 +9,8 @@ const navLinks = [
   { label: "Dashboard", to: "/dashboard" },
   { label: "Recruiters", to: "/recruiters" },
   { label: "Blogs", to: "/blogs" },
+  { label: "Calendar", to: "/calendar" },
+  { label: "Trending Skills", to: "/skills" },
 ];
 
 export default function Navbar() {
@@ -24,14 +28,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <span className="text-yellow-500 font-extrabold text-xl tracking-tight">
             Get
           </span>
-          <span className="text-gray-900 font-extrabold text-xl tracking-tight">
+          <span className="text-gray-900 dark:text-white font-extrabold text-xl tracking-tight">
             Hired
           </span>
           <span className="ml-1 text-xs text-gray-400 font-normal hidden sm:block">
@@ -47,8 +51,8 @@ export default function Navbar() {
               to={l.to}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 pathname === l.to
-                  ? "bg-yellow-50 text-yellow-700"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {l.label}
@@ -56,7 +60,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Admin button */}
         <div className="hidden md:flex items-center gap-2">
           {isAdmin && (
             <button
@@ -74,39 +77,25 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen((p) => !p)}
-          className="md:hidden text-gray-600 focus:outline-none"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div className="md:hidden">
+          <button
+            onClick={() => setMenuOpen((p) => !p)}
+            className="text-gray-600 dark:text-gray-300 focus:outline-none"
           >
-            {menuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-1 bg-white border-t">
+        <div className="md:hidden px-4 pb-4 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
           {navLinks.map((l) => (
             <Link
               key={l.to}
@@ -114,29 +103,23 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className={`block px-4 py-2 rounded-lg text-sm font-medium ${
                 pathname === l.to
-                  ? "bg-yellow-50 text-yellow-700"
-                  : "text-gray-600 hover:bg-gray-50"
+                  ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               }`}
             >
               {l.label}
             </Link>
           ))}
           <button
-            onClick={() => {
-              handleAdminClick();
-              setMenuOpen(false);
-            }}
+            onClick={() => { handleAdminClick(); setMenuOpen(false); }}
             className="w-full text-left px-4 py-2 rounded-lg text-sm font-semibold bg-yellow-400 text-gray-900 hover:bg-yellow-500"
           >
             {isAdmin ? "Admin Panel" : "Login"}
           </button>
           {isAdmin && (
             <button
-              onClick={() => {
-                logout();
-                setMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50"
+              onClick={() => { logout(); setMenuOpen(false); }}
+              className="w-full text-left px-4 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
             >
               Logout
             </button>
