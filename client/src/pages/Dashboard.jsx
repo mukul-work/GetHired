@@ -25,7 +25,7 @@ import {
 
 // ── Fallback data for when API is unavailable ──
 const FALLBACK_STATS = {
-  totalPlacements: 350,
+  totalPlacements: 220,
   highestPackage: 44,
   avgPackage: 9.6,
   totalCompanies: 38,
