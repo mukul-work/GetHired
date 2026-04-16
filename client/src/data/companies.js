@@ -12,6 +12,7 @@ export const companies = [
     highestPackage: "60 LPA",
     topics: ["DSA", "System Design", "OS"],
     difficulty: "Hard",
+    color: "bg-yellow-50 text-yellow-700",
 
     history: [
       { year: 2024, students: 25, offers: 30, avg: "28 LPA", highest: "60 LPA" },
@@ -32,6 +33,7 @@ export const companies = [
     highestPackage: "45 LPA",
     topics: ["DSA", "LLD"],
     difficulty: "Medium",
+    color: "bg-indigo-50 text-indigo-700",
 
     history: [
       { year: 2024, students: 40, offers: 50, avg: "20 LPA", highest: "45 LPA" },
