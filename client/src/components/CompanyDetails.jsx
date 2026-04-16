@@ -54,8 +54,8 @@ export default function CompanyDetails() {
 
   return (
     <div className="p-6">
-      <button onClick={() => navigate('/companies')} className="mb-4 text-blue-500">
-        ← Back
+      <button onClick={() => navigate('/recruiters')} className="mb-6 bg-yellow-400 text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-yellow-500 transition">
+      Back
       </button>
 
       {/* Header */}

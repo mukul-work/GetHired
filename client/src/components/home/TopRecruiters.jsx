@@ -27,7 +27,7 @@ function TopRecruiters() {
             <div
               key={company.name}
               className={`cursor-pointer rounded-xl p-3 text-center hover:shadow-md transition border border-transparent hover:border-gray-100 ${company.color}`}
-              onClick={() => navigate("/recruiters")}
+              onClick={() => navigate(`/recruiters/${company.id}`)}
             >
               <p className="font-semibold text-sm">{company.name}</p>
             </div>
