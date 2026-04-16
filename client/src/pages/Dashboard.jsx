@@ -22,6 +22,7 @@ import {
   getPlacements,
   getFilterOptions,
 } from "../services/api";
+import { formatPkg } from "../utils/formatPkg";
 
 // ── Fallback data for when API is unavailable ──
 const FALLBACK_STATS = {
@@ -314,12 +315,12 @@ function StatCard({ label, value, sub, color = "blue" }) {
     amber: "bg-amber-50 text-amber-600",
   };
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-      <p className="text-gray-500 text-sm">{label}</p>
+    <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+      <p className="text-gray-500 dark:text-gray-400 text-sm">{label}</p>
       <p className={`text-3xl font-bold mt-1 ${clr[color].split(" ")[1]}`}>
         {value}
       </p>
-      {sub && <p className="text-gray-400 text-xs mt-1">{sub}</p>}
+      {sub && <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">{sub}</p>}
     </div>
   );
 }
@@ -335,9 +336,9 @@ function FilterSidebar({ filters, options, onChange }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sticky top-20">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5 sticky top-20">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="font-bold text-gray-800">Filters</h3>
+        <h3 className="font-bold text-gray-800 dark:text-white">Filters</h3>
         <button
           onClick={() =>
             onChange({
@@ -398,7 +399,7 @@ function FilterSidebar({ filters, options, onChange }) {
             onChange={(e) => onChange({ ...filters, minPkg: e.target.value })}
             className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300"
           />
-          <span className="text-gray-400 text-sm">—</span>
+          <span className="text-gray-400 dark:text-gray-500 text-sm">—</span>
           <input
             type="number"
             placeholder="Max"
@@ -437,9 +438,9 @@ function FilterSidebar({ filters, options, onChange }) {
 function PlacementTable({ placements, loading, page, pages, onPageChange }) {
   return (
     <div>
-      <div className="overflow-x-auto rounded-xl border border-gray-100">
+      <div className="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-800">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+          <thead className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs uppercase">
             <tr>
               <th className="px-4 py-3 text-left">Student</th>
               <th className="px-4 py-3 text-left">Branch</th>
@@ -449,7 +450,7 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
               <th className="px-4 py-3 text-left">Year</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50">
+          <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
             {loading ? (
               Array(6)
                 .fill(0)
@@ -475,8 +476,8 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
               </tr>
             ) : (
               placements.map((p) => (
-                <tr key={p._id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-3 font-medium text-gray-800">
+                <tr key={p._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                  <td className="px-4 py-3 font-medium text-gray-800 dark:text-gray-200">
                     {p.studentName}
                   </td>
                   <td className="px-4 py-3">
@@ -490,16 +491,16 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
                       {p.branch}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-gray-700">{p.company}</td>
-                  <td className="px-4 py-3 text-gray-600">{p.role}</td>
+                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{p.company}</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">{p.role}</td>
                   <td className="px-4 py-3">
                     <span
-                      className={`font-semibold ${p.package >= 20 ? "text-green-600" : p.package >= 10 ? "text-yellow-600" : "text-gray-700"}`}
+                      className={`font-semibold ${p.package >= 20 ? "text-green-600" : p.package >= 10 ? "text-yellow-600" : "text-gray-700 dark:text-gray-300"}`}
                     >
-                      {p.package} LPA
+                      {formatPkg(p.package)}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-gray-500">{p.year}</td>
+                  <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{p.year}</td>
                 </tr>
               ))
             )}
@@ -512,7 +513,7 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
           <button
             onClick={() => onPageChange(page - 1)}
             disabled={page === 1}
-            className="px-3 py-1.5 rounded-lg text-sm border disabled:opacity-40 hover:bg-gray-50"
+            className="px-3 py-1.5 rounded-lg text-sm border border-gray-200 dark:border-gray-700 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
           >
             ‹
           </button>
@@ -522,7 +523,7 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
               <button
                 key={p}
                 onClick={() => onPageChange(p)}
-                className={`px-3 py-1.5 rounded-lg text-sm border ${page === p ? "bg-yellow-400 text-gray-900 border-yellow-400" : "hover:bg-gray-50"}`}
+                className={`px-3 py-1.5 rounded-lg text-sm border ${page === p ? "bg-yellow-400 text-gray-900 border-yellow-400" : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"}`}
               >
                 {p}
               </button>
@@ -553,28 +554,28 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
 // ── Top Performers ─────────────────────────────────────────
 function TopPerformers({ performers }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-      <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5">
+      <h3 className="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
         <span>🏆</span> Top Performers
       </h3>
       <div className="space-y-3">
         {performers.map((p, i) => (
           <div key={p._id} className="flex items-center gap-3">
             <span
-              className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? "bg-yellow-100 text-yellow-700" : i === 1 ? "bg-gray-100 text-gray-600" : i === 2 ? "bg-orange-100 text-orange-600" : "bg-gray-50 text-gray-500"}`}
+              className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400" : i === 1 ? "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400" : i === 2 ? "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400" : "bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-500"}`}
             >
               {i + 1}
             </span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-800 truncate">
+              <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate">
                 {p.studentName}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {p.branch} · {p.company}
               </p>
             </div>
-            <span className="text-sm font-bold text-green-600 whitespace-nowrap">
-              {p.package} LPA
+            <span className="text-sm font-bold text-green-600 dark:text-green-400 whitespace-nowrap">
+              {formatPkg(p.package)}
             </span>
           </div>
         ))}
@@ -590,7 +591,9 @@ export default function Dashboard() {
   const [branchData, setBranchData] = useState(FALLBACK_BRANCH);
   const [companiesData, setCompaniesData] = useState(FALLBACK_COMPANIES);
   const [pkgDistData, setPkgDistData] = useState(FALLBACK_PKGDIST);
-  const [performers, setPerformers] = useState([]);
+  const [performers, setPerformers] = useState(
+    FALLBACK_PLACEMENTS.slice(0, 10).sort((a, b) => b.package - a.package),
+  );
   const [placements, setPlacements] = useState([]);
   const [filterOptions, setFilterOptions] = useState(FALLBACK_FILTERS);
   const [filters, setFilters] = useState({
@@ -607,7 +610,7 @@ export default function Dashboard() {
   const [tableLoading, setTableLoading] = useState(true);
   const [chartsLoading, setChartsLoading] = useState(true);
 
-  // Load charts & stats
+  // Load charts & stats — use fallback when DB is empty
   useEffect(() => {
     Promise.allSettled([
       getPlacementStats(),
@@ -618,13 +621,19 @@ export default function Dashboard() {
       getTopPerformers(),
       getFilterOptions(),
     ]).then(([statsR, yearR, branchR, compR, pkgR, perfR, filtersR]) => {
-      if (statsR.status === "fulfilled") setStats(statsR.value.data);
-      if (yearR.status === "fulfilled") setYearlyData(yearR.value.data);
-      if (branchR.status === "fulfilled") setBranchData(branchR.value.data);
-      if (compR.status === "fulfilled") setCompaniesData(compR.value.data);
-      if (pkgR.status === "fulfilled") setPkgDistData(pkgR.value.data);
-      if (perfR.status === "fulfilled") setPerformers(perfR.value.data);
-      if (filtersR.status === "fulfilled")
+      if (statsR.status === "fulfilled" && statsR.value.data?.totalPlacements > 0)
+        setStats(statsR.value.data);
+      if (yearR.status === "fulfilled" && yearR.value.data?.length > 0)
+        setYearlyData(yearR.value.data);
+      if (branchR.status === "fulfilled" && branchR.value.data?.length > 0)
+        setBranchData(branchR.value.data);
+      if (compR.status === "fulfilled" && compR.value.data?.length > 0)
+        setCompaniesData(compR.value.data);
+      if (pkgR.status === "fulfilled" && pkgR.value.data?.some((d) => d.count > 0))
+        setPkgDistData(pkgR.value.data);
+      if (perfR.status === "fulfilled" && perfR.value.data?.length > 0)
+        setPerformers(perfR.value.data);
+      if (filtersR.status === "fulfilled" && filtersR.value.data?.years?.length > 0)
         setFilterOptions(filtersR.value.data);
       setChartsLoading(false);
     });
@@ -642,9 +651,14 @@ export default function Dashboard() {
     if (filters.maxPkg) params.maxPkg = filters.maxPkg;
     getPlacements(params)
       .then(({ data }) => {
-        setPlacements(data.data);
-        setPages(data.pages);
-        setTotal(data.total);
+        if (data.total > 0) {
+          setPlacements(data.data);
+          setPages(data.pages);
+          setTotal(data.total);
+        } else {
+          // DB is empty — use fallback data
+          throw new Error("empty");
+        }
       })
       .catch(() => {
         // API unavailable — filter fallback data client-side
@@ -685,14 +699,14 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-5">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
             Placement Dashboard
           </h1>
-          <p className="text-gray-500 text-sm mt-0.5">
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
             Comprehensive placement analytics across all years and branches
           </p>
         </div>
@@ -713,12 +727,12 @@ export default function Dashboard() {
           />
           <StatCard
             label="Highest Package"
-            value={`${stats.highestPackage} LPA`}
+            value={formatPkg(stats.highestPackage)}
             color="green"
           />
           <StatCard
             label="Avg Package"
-            value={`${stats.avgPackage} LPA`}
+            value={formatPkg(stats.avgPackage)}
             color="amber"
           />
         </div>
@@ -726,8 +740,8 @@ export default function Dashboard() {
         {/* Charts Row 1 — Year + Branch */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Year-wise Line Chart */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 className="font-bold text-gray-800 mb-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5">
+            <h3 className="font-bold text-gray-800 dark:text-white mb-4">
               Year-wise Placements
             </h3>
             {chartsLoading ? (
@@ -778,8 +792,8 @@ export default function Dashboard() {
           </div>
 
           {/* Branch-wise Bar Chart */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 className="font-bold text-gray-800 mb-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5">
+            <h3 className="font-bold text-gray-800 dark:text-white mb-4">
               Branch-wise Placements
             </h3>
             {chartsLoading ? (
@@ -818,8 +832,8 @@ export default function Dashboard() {
         {/* Charts Row 2 — Companies + Package Dist */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Companies Horizontal Bar */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 className="font-bold text-gray-800 mb-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5">
+            <h3 className="font-bold text-gray-800 dark:text-white mb-4">
               Top Companies by Offers
             </h3>
             {chartsLoading ? (
@@ -855,8 +869,8 @@ export default function Dashboard() {
           </div>
 
           {/* Package Distribution Histogram */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 className="font-bold text-gray-800 mb-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-5">
+            <h3 className="font-bold text-gray-800 dark:text-white mb-4">
               Package Distribution
             </h3>
             {chartsLoading ? (

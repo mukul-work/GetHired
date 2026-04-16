@@ -62,11 +62,11 @@ function BlogPost() {
     : "";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         <button
           onClick={() => navigate("/blogs")}
-          className="flex items-center gap-1 text-yellow-600 text-sm mb-8 hover:underline"
+          className="flex items-center gap-1 text-yellow-600 dark:text-yellow-400 text-sm mb-8 hover:underline"
         >
           ← Back to Blogs
         </button>
@@ -76,25 +76,25 @@ function BlogPost() {
           {(blog.tags || []).map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-yellow-50 text-yellow-700 px-2.5 py-1 rounded-full font-medium"
+              className="text-xs bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400 px-2.5 py-1 rounded-full font-medium"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h1 className="text-3xl font-bold text-gray-800 mb-4 leading-tight">
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4 leading-tight">
           {blog.title}
         </h1>
 
         {/* Author Meta */}
-        <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
-          <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-700 font-bold text-sm">
+        <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100 dark:border-gray-800">
+          <div className="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center text-yellow-700 dark:text-yellow-400 font-bold text-sm">
             {blog.author?.charAt(0)}
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-800">{blog.author}</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{blog.author}</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">
               {blog.branch} · Batch {blog.batch} · Placed at {blog.company}
               {formattedDate && ` · ${formattedDate}`}
               {blog.readTime && ` · ${blog.readTime} read`}
@@ -103,35 +103,32 @@ function BlogPost() {
         </div>
 
         {/* Content */}
-        <div className="prose prose-blue max-w-none text-gray-700 leading-relaxed">
+        <div className="prose max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
           {(blog.content || blog.excerpt || "").split("\n").map((para, i) => {
             if (!para.trim()) return <br key={i} />;
             if (para.startsWith("**") && para.endsWith("**")) {
               return (
-                <h3
-                  key={i}
-                  className="text-lg font-bold text-gray-800 mt-6 mb-2"
-                >
+                <h3 key={i} className="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-2">
                   {para.replace(/\*\*/g, "")}
                 </h3>
               );
             }
             if (para.startsWith("- ") || para.startsWith("• ")) {
               return (
-                <li key={i} className="ml-4 mb-1 text-gray-700">
+                <li key={i} className="ml-4 mb-1 text-gray-700 dark:text-gray-300">
                   {para.replace(/^[•\-] /, "").replace(/\*\*(.*?)\*\*/g, "$1")}
                 </li>
               );
             }
             if (/^\d+\.\s/.test(para)) {
               return (
-                <p key={i} className="ml-4 mb-1 text-gray-700">
+                <p key={i} className="ml-4 mb-1 text-gray-700 dark:text-gray-300">
                   {para.replace(/\*\*(.*?)\*\*/g, "$1")}
                 </p>
               );
             }
             return (
-              <p key={i} className="mb-3 text-gray-700">
+              <p key={i} className="mb-3 text-gray-700 dark:text-gray-300">
                 {para
                   .split(/(\*\*.*?\*\*)/)
                   .map((part, j) =>

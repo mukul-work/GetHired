@@ -58,16 +58,13 @@ function Blogs() {
   }, [blogs, debouncedSearch, selectedTag]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
       {/* Header */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-1">
-            Placement Blogs
-          </h1>
-          <p className="text-gray-500 text-sm">
-            Interview experiences, tips, and career advice from your fellow
-            students
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">Placement Blogs</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
+            Interview experiences, tips, and career advice from your fellow students
           </p>
         </div>
       </div>
@@ -76,7 +73,7 @@ function Blogs() {
         {/* Search Bar */}
         <div className="relative mb-5">
           <svg
-            className="absolute left-3.5 top-3 w-4 h-4 text-gray-400"
+            className="absolute left-3.5 top-3 w-4 h-4 text-gray-400 dark:text-gray-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -93,7 +90,7 @@ function Blogs() {
             placeholder="Search by title, company, author…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-gray-200 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white text-sm shadow-sm"
+            className="w-full border border-gray-200 dark:border-gray-700 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 shadow-sm"
           />
         </div>
 
@@ -104,7 +101,7 @@ function Blogs() {
             className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
               selectedTag === ""
                 ? "bg-yellow-400 text-gray-900 border-yellow-400"
-                : "text-gray-600 border-gray-200 hover:border-yellow-300 bg-white"
+                : "text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-yellow-300 dark:hover:border-yellow-700 bg-white dark:bg-gray-800"
             }`}
           >
             All
@@ -116,7 +113,7 @@ function Blogs() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
                 selectedTag === tag
                   ? "bg-yellow-400 text-gray-900 border-yellow-400"
-                  : "text-gray-600 border-gray-200 hover:border-yellow-300 bg-white"
+                  : "text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-yellow-300 dark:hover:border-yellow-700 bg-white dark:bg-gray-800"
               }`}
             >
               {tag}
@@ -125,7 +122,7 @@ function Blogs() {
         </div>
 
         {/* Results count */}
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
           {displayBlogs.length}{" "}
           {displayBlogs.length === 1 ? "article" : "articles"} found
           {debouncedSearch && ` for "${debouncedSearch}"`}
