@@ -5,6 +5,7 @@ import {
   getTopPerformers,
   getBranchChart,
 } from "../../services/api";
+import { formatPkg } from "../../utils/formatPkg";
 
 function RecentSeason() {
   const navigate = useNavigate();
@@ -43,26 +44,26 @@ function RecentSeason() {
     },
     {
       label: "Highest Package",
-      value: `${stats.highestPackage} LPA`,
+      value: formatPkg(stats.highestPackage),
       icon: "💰",
     },
   ];
 
   return (
-    <div className="px-6 sm:px-10 py-12 bg-gray-50">
+    <div className="px-6 sm:px-10 py-12 bg-gray-50 dark:bg-gray-950 transition-colors">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
               Recent Placement Season
             </h2>
-            <p className="text-gray-500 text-sm mt-0.5">
+            <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
               Highlights from the 2024 placement drive
             </p>
           </div>
           <button
             onClick={() => navigate("/dashboard")}
-            className="text-yellow-600 text-sm font-medium hover:underline hidden sm:block"
+            className="text-yellow-600 dark:text-yellow-400 text-sm font-medium hover:underline hidden sm:block"
           >
             Full Stats →
           </button>
@@ -72,11 +73,11 @@ function RecentSeason() {
           {cards.map((card) => (
             <div
               key={card.label}
-              className="bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm"
+              className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 text-center shadow-sm"
             >
               <span className="text-2xl mb-2 block">{card.icon}</span>
-              <p className="text-lg font-bold text-gray-800">{card.value}</p>
-              <p className="text-gray-500 text-xs mt-1">{card.label}</p>
+              <p className="text-lg font-bold text-gray-800 dark:text-white">{card.value}</p>
+              <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{card.label}</p>
             </div>
           ))}
         </div>
