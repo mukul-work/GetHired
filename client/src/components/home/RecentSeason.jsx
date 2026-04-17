@@ -76,8 +76,12 @@ function RecentSeason() {
               className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 text-center shadow-sm"
             >
               <span className="text-2xl mb-2 block">{card.icon}</span>
-              <p className="text-lg font-bold text-gray-800 dark:text-white">{card.value}</p>
-              <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{card.label}</p>
+              <p className="text-lg font-bold text-gray-800 dark:text-white">
+                {card.value}
+              </p>
+              <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
+                {card.label}
+              </p>
             </div>
           ))}
         </div>

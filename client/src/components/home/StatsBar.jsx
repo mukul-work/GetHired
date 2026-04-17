@@ -45,7 +45,9 @@ function StatsBar() {
           className={`text-center py-8 px-4 ${i < 3 ? "border-r border-gray-100 dark:border-gray-800" : ""}`}
         >
           <p className="text-3xl font-bold text-yellow-500">{stat.value}</p>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{stat.label}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
+            {stat.label}
+          </p>
         </div>
       ))}
     </div>

@@ -26,7 +26,7 @@ import { formatPkg } from "../utils/formatPkg";
 
 // ── Fallback data for when API is unavailable ──
 const FALLBACK_STATS = {
-  totalPlacements: 220,
+  totalPlacements: 350,
   highestPackage: 44,
   avgPackage: 9.6,
   totalCompanies: 38,
@@ -320,7 +320,9 @@ function StatCard({ label, value, sub, color = "blue" }) {
       <p className={`text-3xl font-bold mt-1 ${clr[color].split(" ")[1]}`}>
         {value}
       </p>
-      {sub && <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">{sub}</p>}
+      {sub && (
+        <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">{sub}</p>
+      )}
     </div>
   );
 }
@@ -476,7 +478,10 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
               </tr>
             ) : (
               placements.map((p) => (
-                <tr key={p._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                <tr
+                  key={p._id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                >
                   <td className="px-4 py-3 font-medium text-gray-800 dark:text-gray-200">
                     {p.studentName}
                   </td>
@@ -491,8 +496,12 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
                       {p.branch}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{p.company}</td>
-                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">{p.role}</td>
+                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                    {p.company}
+                  </td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">
+                    {p.role}
+                  </td>
                   <td className="px-4 py-3">
                     <span
                       className={`font-semibold ${p.package >= 20 ? "text-green-600" : p.package >= 10 ? "text-yellow-600" : "text-gray-700 dark:text-gray-300"}`}
@@ -500,7 +509,9 @@ function PlacementTable({ placements, loading, page, pages, onPageChange }) {
                       {formatPkg(p.package)}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{p.year}</td>
+                  <td className="px-4 py-3 text-gray-500 dark:text-gray-400">
+                    {p.year}
+                  </td>
                 </tr>
               ))
             )}
@@ -621,7 +632,10 @@ export default function Dashboard() {
       getTopPerformers(),
       getFilterOptions(),
     ]).then(([statsR, yearR, branchR, compR, pkgR, perfR, filtersR]) => {
-      if (statsR.status === "fulfilled" && statsR.value.data?.totalPlacements > 0)
+      if (
+        statsR.status === "fulfilled" &&
+        statsR.value.data?.totalPlacements > 0
+      )
         setStats(statsR.value.data);
       if (yearR.status === "fulfilled" && yearR.value.data?.length > 0)
         setYearlyData(yearR.value.data);
@@ -629,11 +643,17 @@ export default function Dashboard() {
         setBranchData(branchR.value.data);
       if (compR.status === "fulfilled" && compR.value.data?.length > 0)
         setCompaniesData(compR.value.data);
-      if (pkgR.status === "fulfilled" && pkgR.value.data?.some((d) => d.count > 0))
+      if (
+        pkgR.status === "fulfilled" &&
+        pkgR.value.data?.some((d) => d.count > 0)
+      )
         setPkgDistData(pkgR.value.data);
       if (perfR.status === "fulfilled" && perfR.value.data?.length > 0)
         setPerformers(perfR.value.data);
-      if (filtersR.status === "fulfilled" && filtersR.value.data?.years?.length > 0)
+      if (
+        filtersR.status === "fulfilled" &&
+        filtersR.value.data?.years?.length > 0
+      )
         setFilterOptions(filtersR.value.data);
       setChartsLoading(false);
     });

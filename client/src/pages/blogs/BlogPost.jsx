@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { getBlog } from "../../services/api.js";
 import localBlogs from "../../data/blogs.js";
 
-
 function BlogPost() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -93,7 +92,9 @@ function BlogPost() {
             {blog.author?.charAt(0)}
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{blog.author}</p>
+            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+              {blog.author}
+            </p>
             <p className="text-xs text-gray-400 dark:text-gray-500">
               {blog.branch} · Batch {blog.batch} · Placed at {blog.company}
               {formattedDate && ` · ${formattedDate}`}
@@ -108,21 +109,30 @@ function BlogPost() {
             if (!para.trim()) return <br key={i} />;
             if (para.startsWith("**") && para.endsWith("**")) {
               return (
-                <h3 key={i} className="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-2">
+                <h3
+                  key={i}
+                  className="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-2"
+                >
                   {para.replace(/\*\*/g, "")}
                 </h3>
               );
             }
             if (para.startsWith("- ") || para.startsWith("• ")) {
               return (
-                <li key={i} className="ml-4 mb-1 text-gray-700 dark:text-gray-300">
+                <li
+                  key={i}
+                  className="ml-4 mb-1 text-gray-700 dark:text-gray-300"
+                >
                   {para.replace(/^[•\-] /, "").replace(/\*\*(.*?)\*\*/g, "$1")}
                 </li>
               );
             }
             if (/^\d+\.\s/.test(para)) {
               return (
-                <p key={i} className="ml-4 mb-1 text-gray-700 dark:text-gray-300">
+                <p
+                  key={i}
+                  className="ml-4 mb-1 text-gray-700 dark:text-gray-300"
+                >
                   {para.replace(/\*\*(.*?)\*\*/g, "$1")}
                 </p>
               );

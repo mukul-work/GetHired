@@ -21,7 +21,9 @@ function BlogsPreview() {
       <div className="max-w-5xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Latest Blogs</h2>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+              Latest Blogs
+            </h2>
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
               Interview experiences from your fellow students
             </p>

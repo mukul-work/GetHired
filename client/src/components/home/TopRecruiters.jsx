@@ -9,7 +9,12 @@ function LogoImg({ src, domain, name }) {
     `https://www.google.com/s2/favicons?sz=128&domain=${domain}`,
   ];
   const [idx, setIdx] = useState(0);
-  if (idx >= srcs.length) return <span className="text-base font-bold text-gray-400">{name.charAt(0)}</span>;
+  if (idx >= srcs.length)
+    return (
+      <span className="text-base font-bold text-gray-400">
+        {name.charAt(0)}
+      </span>
+    );
   return (
     <img
       src={srcs[idx]}
@@ -28,7 +33,9 @@ function TopRecruiters() {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Top Recruiters</h2>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+              Top Recruiters
+            </h2>
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
               Companies that hire from KIET every year
             </p>
@@ -47,8 +54,14 @@ function TopRecruiters() {
               className="cursor-pointer rounded-xl p-3 text-center hover:shadow-md transition border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 hover:border-yellow-200 dark:hover:border-yellow-800 flex flex-col items-center gap-2"
               onClick={() => navigate(`/recruiters/${company.id}`)}
             >
-              <LogoImg src={company.logo} domain={company.domain} name={company.name} />
-              <p className="font-semibold text-xs text-gray-700 dark:text-gray-300 leading-tight">{company.name}</p>
+              <LogoImg
+                src={company.logo}
+                domain={company.domain}
+                name={company.name}
+              />
+              <p className="font-semibold text-xs text-gray-700 dark:text-gray-300 leading-tight">
+                {company.name}
+              </p>
             </button>
           ))}
         </div>

@@ -62,7 +62,9 @@ function AddBlogModal({ onClose, onSuccess }) {
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
-          <h2 className="text-lg font-bold text-gray-800 dark:text-white">Add New Blog</h2>
+          <h2 className="text-lg font-bold text-gray-800 dark:text-white">
+            Add New Blog
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none"
@@ -149,17 +151,41 @@ function UploadingOverlay({ fileName }) {
           style={{ animation: "spin 1.4s linear infinite reverse" }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <svg className="w-5 h-5 text-yellow-500" viewBox="0 0 20 20" fill="none">
-            <path d="M10 3v9M10 3l-3 3M10 3l3 3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M3 14h14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-            <path d="M5 14v1.5a1.5 1.5 0 001.5 1.5h7A1.5 1.5 0 0015 15.5V14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+          <svg
+            className="w-5 h-5 text-yellow-500"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M10 3v9M10 3l-3 3M10 3l3 3"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M3 14h14"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+            />
+            <path
+              d="M5 14v1.5a1.5 1.5 0 001.5 1.5h7A1.5 1.5 0 0015 15.5V14"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+            />
           </svg>
         </div>
       </div>
       <div className="text-center">
-        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Uploading file…</p>
+        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+          Uploading file…
+        </p>
         {fileName && (
-          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 max-w-[220px] truncate">{fileName}</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 max-w-[220px] truncate">
+            {fileName}
+          </p>
         )}
       </div>
       <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
@@ -173,36 +199,41 @@ function UploadSection() {
   const [uploading, setUploading] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    if (!acceptedFiles.length) return;
-    const file = acceptedFiles[0];
-    setFileName(file.name);
-    setUploading(true);
-    const fd = new FormData();
-    fd.append("file", file);
-    try {
-      const { data } = await uploadFile(fd);
-      toast.success(
-        "Upload successful",
-        data.message || `${data.count} records imported`,
-      );
-    } catch (err) {
-      toast.error(
-        "Upload failed",
-        err.response?.data?.message || "Check file format and try again.",
-        6000,
-      );
-    } finally {
-      setUploading(false);
-      setFileName("");
-    }
-  }, [toast]);
+  const onDrop = useCallback(
+    async (acceptedFiles) => {
+      if (!acceptedFiles.length) return;
+      const file = acceptedFiles[0];
+      setFileName(file.name);
+      setUploading(true);
+      const fd = new FormData();
+      fd.append("file", file);
+      try {
+        const { data } = await uploadFile(fd);
+        toast.success(
+          "Upload successful",
+          data.message || `${data.count} records imported`,
+        );
+      } catch (err) {
+        toast.error(
+          "Upload failed",
+          err.response?.data?.message || "Check file format and try again.",
+          6000,
+        );
+      } finally {
+        setUploading(false);
+        setFileName("");
+      }
+    },
+    [toast],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
       "text/csv": [".csv"],
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+        ".xlsx",
+      ],
       "application/vnd.ms-excel": [".xls"],
     },
     multiple: false,
@@ -211,10 +242,14 @@ function UploadSection() {
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
-      <h3 className="font-bold text-gray-800 dark:text-white mb-1">Upload Placement Data</h3>
+      <h3 className="font-bold text-gray-800 dark:text-white mb-1">
+        Upload Placement Data
+      </h3>
       <p className="text-gray-500 dark:text-gray-400 text-sm mb-5">
         Upload a CSV or Excel file with placement records. Columns:{" "}
-        <span className="font-mono text-gray-700 dark:text-gray-300">studentName, branch, company, role, package, year, type</span>
+        <span className="font-mono text-gray-700 dark:text-gray-300">
+          studentName, branch, company, role, package, year, type
+        </span>
       </p>
 
       <div
@@ -223,8 +258,8 @@ function UploadSection() {
           uploading
             ? "border-yellow-300 bg-yellow-50/60 cursor-not-allowed"
             : isDragActive
-            ? "border-yellow-400 bg-yellow-50 dark:bg-yellow-900/10 cursor-copy"
-            : "border-gray-200 dark:border-gray-700 hover:border-yellow-300 hover:bg-gray-50/60 dark:hover:bg-gray-800/40 cursor-pointer"
+              ? "border-yellow-400 bg-yellow-50 dark:bg-yellow-900/10 cursor-copy"
+              : "border-gray-200 dark:border-gray-700 hover:border-yellow-300 hover:bg-gray-50/60 dark:hover:bg-gray-800/40 cursor-pointer"
         }`}
       >
         <input {...getInputProps()} />
@@ -233,21 +268,45 @@ function UploadSection() {
             <UploadingOverlay fileName={fileName} />
           ) : isDragActive ? (
             <>
-              <svg className="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              <svg
+                className="w-12 h-12 text-yellow-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                />
               </svg>
               <p className="text-yellow-600 font-semibold">Drop it here!</p>
             </>
           ) : (
             <>
-              <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              <svg
+                className="w-12 h-12 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                />
               </svg>
-              <p className="text-gray-600 dark:text-gray-300 font-medium">Drag & drop your file here</p>
-              <p className="text-gray-400 dark:text-gray-500 text-sm">or click to browse</p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Supported: .csv, .xlsx, .xls</p>
+              <p className="text-gray-600 dark:text-gray-300 font-medium">
+                Drag & drop your file here
+              </p>
+              <p className="text-gray-400 dark:text-gray-500 text-sm">
+                or click to browse
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                Supported: .csv, .xlsx, .xls
+              </p>
             </>
           )}
         </div>
@@ -255,10 +314,16 @@ function UploadSection() {
 
       {/* CSV template hint */}
       <div className="mt-4 bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">Expected CSV/Excel Format:</p>
-        <code className="text-xs text-gray-500 dark:text-gray-400 font-mono">studentName, branch, company, role, package, year, type</code>
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">
+          Expected CSV/Excel Format:
+        </p>
+        <code className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+          studentName, branch, company, role, package, year, type
+        </code>
         <br />
-        <code className="text-xs text-gray-400 dark:text-gray-500 font-mono">Rahul Sharma, CSE, Google, Software Engineer, 42, 2024, On-Campus</code>
+        <code className="text-xs text-gray-400 dark:text-gray-500 font-mono">
+          Rahul Sharma, CSE, Google, Software Engineer, 42, 2024, On-Campus
+        </code>
       </div>
     </div>
   );
@@ -295,7 +360,9 @@ export default function Admin() {
       <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Admin Panel
+            </h1>
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
               Manage placement data and blog posts
             </p>
@@ -364,7 +431,9 @@ export default function Admin() {
               </svg>
             </div>
             <div>
-              <p className="font-bold text-gray-800 dark:text-white">View Dashboard</p>
+              <p className="font-bold text-gray-800 dark:text-white">
+                View Dashboard
+              </p>
               <button
                 onClick={() => navigate("/dashboard")}
                 className="text-yellow-600 text-sm hover:underline"
