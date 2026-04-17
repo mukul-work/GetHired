@@ -262,14 +262,14 @@ const CATEGORIES = [
   "Soft Skills",
 ];
 const DIFFICULTY_COLORS = {
-  Easy: "bg-green-50 text-green-700 border border-green-200",
-  Medium: "bg-yellow-50 text-yellow-700 border border-yellow-200",
-  Hard: "bg-red-50 text-red-700 border border-red-200",
+  Easy: "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800",
+  Medium: "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800",
+  Hard: "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800",
 };
 const TAG_COLORS = [
-  "bg-blue-50 text-blue-700 border border-blue-200",
-  "bg-purple-50 text-purple-700 border border-purple-200",
-  "bg-gray-50 text-gray-700 border border-gray-200",
+  "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800",
+  "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 border border-purple-200 dark:border-purple-800",
+  "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700",
 ];
 
 export default function TrendingSkills() {
@@ -311,19 +311,19 @@ export default function TrendingSkills() {
               rank: "🥇",
               skill: "DSA",
               note: "Asked at every product company",
-              color: "bg-yellow-50 border-yellow-200",
+              color: "bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800",
             },
             {
               rank: "🥈",
               skill: "Git & GitHub",
               note: "Non-negotiable prerequisite",
-              color: "bg-gray-50 border-gray-200",
+              color: "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700",
             },
             {
               rank: "🥉",
               skill: "Aptitude",
               note: "First filter in mass drives",
-              color: "bg-orange-50 border-orange-200",
+              color: "bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800",
             },
           ].map((b) => (
             <div key={b.skill} className={`rounded-2xl border p-4 ${b.color}`}>
