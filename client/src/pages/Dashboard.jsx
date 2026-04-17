@@ -27,8 +27,8 @@ import { formatPkg } from "../utils/formatPkg";
 // ── Fallback data for when API is unavailable ──
 const FALLBACK_STATS = {
   totalPlacements: 350,
-  highestPackage: 44,
-  avgPackage: 9.6,
+  highestPackage: 1.78,
+  avgPackage: 8.4,
   totalCompanies: 38,
 };
 const FALLBACK_YEARLY = [
