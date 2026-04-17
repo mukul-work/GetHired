@@ -15,7 +15,7 @@ function Hero() {
         </h1>
         <p className="text-gray-500 dark:text-gray-400 text-lg sm:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
           Explore placement records, company data, interview experiences, and
-          career insights — all in one place.
+          career insights. <span className="font-bold">All in one place.</span>
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
