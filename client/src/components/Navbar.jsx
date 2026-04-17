@@ -35,10 +35,11 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2">
           <span className="text-yellow-500 font-extrabold text-xl tracking-tight">
             Get
+            <span className="text-gray-900 dark:text-white font-extrabold text-xl tracking-tight">
+              Hired
+            </span>
           </span>
-          <span className="text-gray-900 dark:text-white font-extrabold text-xl tracking-tight">
-            Hired
-          </span>
+
           <span className="ml-1 text-xs text-gray-400 font-normal hidden sm:block">
             | KIET Placements
           </span>
@@ -50,11 +51,10 @@ export default function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                pathname === l.to
-                  ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
-              }`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pathname === l.to
+                ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
+                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
+                }`}
             >
               {l.label}
             </Link>
@@ -165,11 +165,10 @@ export default function Navbar() {
               key={l.to}
               to={l.to}
               onClick={() => setMenuOpen(false)}
-              className={`block px-4 py-2 rounded-lg text-sm font-medium ${
-                pathname === l.to
-                  ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-              }`}
+              className={`block px-4 py-2 rounded-lg text-sm font-medium ${pathname === l.to
+                ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
+                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                }`}
             >
               {l.label}
             </Link>
