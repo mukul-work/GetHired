@@ -14,11 +14,15 @@ const SKILLS = [
     difficulty: "Hard",
     timeToLearn: "3–6 months",
     resources: [
-      { name: "Striver's A2Z DSA Sheet", url: "https://takeuforward.org/strivers-a2z-dsa-course" },
+      {
+        name: "Striver's A2Z DSA Sheet",
+        url: "https://takeuforward.org/strivers-a2z-dsa-course",
+      },
       { name: "LeetCode", url: "https://leetcode.com" },
       { name: "GeeksForGeeks", url: "https://geeksforgeeks.org" },
     ],
-    description: "The #1 skill for cracking top product companies. Master arrays, trees, graphs, DP and recursion.",
+    description:
+      "The #1 skill for cracking top product companies. Master arrays, trees, graphs, DP and recursion.",
     tags: ["Must Have", "Interview Critical"],
   },
   {
@@ -35,7 +39,8 @@ const SKILLS = [
       { name: "React Docs (Official)", url: "https://react.dev" },
       { name: "Namaste React by Akshay Saini", url: "https://namastedev.com" },
     ],
-    description: "Most in-demand frontend framework. Used in almost every startup and product company.",
+    description:
+      "Most in-demand frontend framework. Used in almost every startup and product company.",
     tags: ["Trending", "High Demand"],
   },
   {
@@ -50,9 +55,13 @@ const SKILLS = [
     timeToLearn: "2–4 months",
     resources: [
       { name: "Grokking System Design", url: "https://designgurus.io" },
-      { name: "System Design Primer (GitHub)", url: "https://github.com/donnemartin/system-design-primer" },
+      {
+        name: "System Design Primer (GitHub)",
+        url: "https://github.com/donnemartin/system-design-primer",
+      },
     ],
-    description: "Critical for SDE-2+ and dream company rounds. Learn scalability, databases, caching, load balancing.",
+    description:
+      "Critical for SDE-2+ and dream company rounds. Learn scalability, databases, caching, load balancing.",
     tags: ["Senior Roles", "Dream Companies"],
   },
   {
@@ -61,7 +70,14 @@ const SKILLS = [
     category: "Backend",
     demand: 85,
     trend: "stable",
-    companies: ["TCS", "Infosys", "Wipro", "Accenture", "Cognizant", "Deloitte"],
+    companies: [
+      "TCS",
+      "Infosys",
+      "Wipro",
+      "Accenture",
+      "Cognizant",
+      "Deloitte",
+    ],
     avgPackage: "6–18 LPA",
     difficulty: "Medium",
     timeToLearn: "3–4 weeks",
@@ -69,7 +85,8 @@ const SKILLS = [
       { name: "SQLZoo", url: "https://sqlzoo.net" },
       { name: "Mode SQL Tutorial", url: "https://mode.com/sql-tutorial" },
     ],
-    description: "Asked in almost every service-based company interview. Strong SQL skills set you apart.",
+    description:
+      "Asked in almost every service-based company interview. Strong SQL skills set you apart.",
     tags: ["Must Have", "Mass Hiring"],
   },
   {
@@ -86,7 +103,8 @@ const SKILLS = [
       { name: "CS50P (Harvard Free)", url: "https://cs50.harvard.edu/python" },
       { name: "Python.org Docs", url: "https://docs.python.org/3/tutorial" },
     ],
-    description: "Versatile language for scripting, automation, data science and backend. Easy to learn and powerful.",
+    description:
+      "Versatile language for scripting, automation, data science and backend. Easy to learn and powerful.",
     tags: ["Beginner Friendly", "Versatile"],
   },
   {
@@ -103,7 +121,8 @@ const SKILLS = [
       { name: "Node.js Official Docs", url: "https://nodejs.org/docs" },
       { name: "The Odin Project", url: "https://theodinproject.com" },
     ],
-    description: "Build REST APIs and server-side apps. Pairs perfectly with React for full-stack roles.",
+    description:
+      "Build REST APIs and server-side apps. Pairs perfectly with React for full-stack roles.",
     tags: ["Full Stack", "Startups"],
   },
   {
@@ -120,7 +139,8 @@ const SKILLS = [
       { name: "Pro Git Book (Free)", url: "https://git-scm.com/book/en/v2" },
       { name: "GitHub Skills", url: "https://skills.github.com" },
     ],
-    description: "Non-negotiable for any developer role. Every interviewer checks your GitHub. Build projects and push them.",
+    description:
+      "Non-negotiable for any developer role. Every interviewer checks your GitHub. Build projects and push them.",
     tags: ["Must Have", "Beginner Friendly"],
   },
   {
@@ -137,7 +157,8 @@ const SKILLS = [
       { name: "GATE Overflow (OS Notes)", url: "https://gateoverflow.in" },
       { name: "Galvin Book PDF", url: "https://www.os-book.com" },
     ],
-    description: "Core subject for interviews. Processes, threads, scheduling, memory management — all asked frequently.",
+    description:
+      "Core subject for interviews. Processes, threads, scheduling, memory management — all asked frequently.",
     tags: ["Core Subject", "Interview Critical"],
   },
   {
@@ -151,10 +172,17 @@ const SKILLS = [
     difficulty: "Medium",
     timeToLearn: "3–4 weeks",
     resources: [
-      { name: "Kurose & Ross Book", url: "https://gaia.cs.umass.edu/kurose_ross" },
-      { name: "GeeksForGeeks CN", url: "https://geeksforgeeks.org/computer-network-tutorials" },
+      {
+        name: "Kurose & Ross Book",
+        url: "https://gaia.cs.umass.edu/kurose_ross",
+      },
+      {
+        name: "GeeksForGeeks CN",
+        url: "https://geeksforgeeks.org/computer-network-tutorials",
+      },
     ],
-    description: "TCP/IP, OSI model, HTTP, DNS — essential for service-based and network-focused companies.",
+    description:
+      "TCP/IP, OSI model, HTTP, DNS — essential for service-based and network-focused companies.",
     tags: ["Core Subject", "Service Based"],
   },
   {
@@ -168,10 +196,14 @@ const SKILLS = [
     difficulty: "Hard",
     timeToLearn: "3–5 months",
     resources: [
-      { name: "Andrew Ng ML Course (Coursera)", url: "https://coursera.org/specializations/machine-learning-introduction" },
+      {
+        name: "Andrew Ng ML Course (Coursera)",
+        url: "https://coursera.org/specializations/machine-learning-introduction",
+      },
       { name: "fast.ai", url: "https://fast.ai" },
     ],
-    description: "Growing demand in product companies. Learn regression, classification, and model evaluation basics.",
+    description:
+      "Growing demand in product companies. Learn regression, classification, and model evaluation basics.",
     tags: ["High Growth", "Future Skill"],
   },
   {
@@ -185,10 +217,17 @@ const SKILLS = [
     difficulty: "Medium",
     timeToLearn: "3–5 weeks",
     resources: [
-      { name: "Docker Official Docs", url: "https://docs.docker.com/get-started" },
-      { name: "TechWorld with Nana (YouTube)", url: "https://youtube.com/@TechWorldwithNana" },
+      {
+        name: "Docker Official Docs",
+        url: "https://docs.docker.com/get-started",
+      },
+      {
+        name: "TechWorld with Nana (YouTube)",
+        url: "https://youtube.com/@TechWorldwithNana",
+      },
     ],
-    description: "Containerization is now expected even for dev roles. Learn Docker and basic CI/CD pipelines.",
+    description:
+      "Containerization is now expected even for dev roles. Learn Docker and basic CI/CD pipelines.",
     tags: ["Growing", "Mid-Level Roles"],
   },
   {
@@ -205,12 +244,23 @@ const SKILLS = [
       { name: "IndiaBix", url: "https://indiabix.com" },
       { name: "RS Aggarwal Book", url: "https://amazon.in" },
     ],
-    description: "First filter in mass hiring drives. You must clear aptitude to get to the tech round.",
+    description:
+      "First filter in mass hiring drives. You must clear aptitude to get to the tech round.",
     tags: ["Must Have", "Mass Hiring"],
   },
 ];
 
-const CATEGORIES = ["All", "Core CS", "Frontend", "Backend", "Programming", "Tools", "AI/ML", "DevOps", "Soft Skills"];
+const CATEGORIES = [
+  "All",
+  "Core CS",
+  "Frontend",
+  "Backend",
+  "Programming",
+  "Tools",
+  "AI/ML",
+  "DevOps",
+  "Soft Skills",
+];
 const DIFFICULTY_COLORS = {
   Easy: "bg-green-50 text-green-700 border border-green-200",
   Medium: "bg-yellow-50 text-yellow-700 border border-yellow-200",
@@ -227,16 +277,16 @@ export default function TrendingSkills() {
   const [sortBy, setSortBy] = useState("demand");
   const [selected, setSelected] = useState(null);
 
-  const filtered = SKILLS
-    .filter((s) => activeCategory === "All" || s.category === activeCategory)
-    .sort((a, b) => {
-      if (sortBy === "demand") return b.demand - a.demand;
-      if (sortBy === "difficulty") {
-        const order = { Easy: 0, Medium: 1, Hard: 2 };
-        return order[a.difficulty] - order[b.difficulty];
-      }
-      return a.name.localeCompare(b.name);
-    });
+  const filtered = SKILLS.filter(
+    (s) => activeCategory === "All" || s.category === activeCategory,
+  ).sort((a, b) => {
+    if (sortBy === "demand") return b.demand - a.demand;
+    if (sortBy === "difficulty") {
+      const order = { Easy: 0, Medium: 1, Hard: 2 };
+      return order[a.difficulty] - order[b.difficulty];
+    }
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
@@ -247,7 +297,8 @@ export default function TrendingSkills() {
             Trending Skills
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
-            What top companies are hiring for — and what you should learn right now
+            What top companies are hiring for — and what you should learn right
+            now
           </p>
         </div>
       </div>
@@ -256,14 +307,33 @@ export default function TrendingSkills() {
         {/* Top 3 Quick Banner */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { rank: "🥇", skill: "DSA", note: "Asked at every product company", color: "bg-yellow-50 border-yellow-200" },
-            { rank: "🥈", skill: "Git & GitHub", note: "Non-negotiable prerequisite", color: "bg-gray-50 border-gray-200" },
-            { rank: "🥉", skill: "Aptitude", note: "First filter in mass drives", color: "bg-orange-50 border-orange-200" },
+            {
+              rank: "🥇",
+              skill: "DSA",
+              note: "Asked at every product company",
+              color: "bg-yellow-50 border-yellow-200",
+            },
+            {
+              rank: "🥈",
+              skill: "Git & GitHub",
+              note: "Non-negotiable prerequisite",
+              color: "bg-gray-50 border-gray-200",
+            },
+            {
+              rank: "🥉",
+              skill: "Aptitude",
+              note: "First filter in mass drives",
+              color: "bg-orange-50 border-orange-200",
+            },
           ].map((b) => (
             <div key={b.skill} className={`rounded-2xl border p-4 ${b.color}`}>
               <p className="text-2xl mb-1">{b.rank}</p>
-              <p className="font-bold text-gray-900 dark:text-white">{b.skill}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{b.note}</p>
+              <p className="font-bold text-gray-900 dark:text-white">
+                {b.skill}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                {b.note}
+              </p>
             </div>
           ))}
         </div>
@@ -287,7 +357,9 @@ export default function TrendingSkills() {
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Sort:</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                Sort:
+              </span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
@@ -312,13 +384,23 @@ export default function TrendingSkills() {
               {/* Top row */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-gray-900 dark:text-white text-base truncate">{skill.name}</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{skill.category}</p>
+                  <p className="font-bold text-gray-900 dark:text-white text-base truncate">
+                    {skill.name}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                    {skill.category}
+                  </p>
                 </div>
                 <div className="flex items-center gap-1 ml-2">
-                  {skill.trend === "up" && <span className="text-green-500 text-xs font-bold">▲</span>}
-                  {skill.trend === "stable" && <span className="text-gray-400 text-xs font-bold">→</span>}
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${DIFFICULTY_COLORS[skill.difficulty]}`}>
+                  {skill.trend === "up" && (
+                    <span className="text-green-500 text-xs font-bold">▲</span>
+                  )}
+                  {skill.trend === "stable" && (
+                    <span className="text-gray-400 text-xs font-bold">→</span>
+                  )}
+                  <span
+                    className={`text-xs font-semibold px-2.5 py-1 rounded-full ${DIFFICULTY_COLORS[skill.difficulty]}`}
+                  >
                     {skill.difficulty}
                   </span>
                 </div>
@@ -328,7 +410,9 @@ export default function TrendingSkills() {
               <div className="mb-4">
                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1.5">
                   <span className="font-medium">Demand</span>
-                  <span className="font-bold text-gray-900 dark:text-white">{skill.demand}%</span>
+                  <span className="font-bold text-gray-900 dark:text-white">
+                    {skill.demand}%
+                  </span>
                 </div>
                 <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
                   <div
@@ -341,7 +425,10 @@ export default function TrendingSkills() {
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {skill.tags.map((tag, i) => (
-                  <span key={tag} className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full font-semibold ${TAG_COLORS[i % TAG_COLORS.length]}`}>
+                  <span
+                    key={tag}
+                    className={`text-[10px] uppercase tracking-wide px-2.5 py-1 rounded-full font-semibold ${TAG_COLORS[i % TAG_COLORS.length]}`}
+                  >
                     {tag}
                   </span>
                 ))}
@@ -350,10 +437,24 @@ export default function TrendingSkills() {
               {/* Bottom info */}
               <div className="border-t border-gray-100 dark:border-gray-800 pt-4 flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span className="font-medium flex items-center gap-1">
-                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <svg
+                    className="w-3.5 h-3.5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
                   {skill.timeToLearn}
                 </span>
-                <span className="font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-lg border border-gray-100 dark:border-gray-700">{skill.avgPackage}</span>
+                <span className="font-semibold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-lg border border-gray-100 dark:border-gray-700">
+                  {skill.avgPackage}
+                </span>
               </div>
             </div>
           ))}
@@ -362,7 +463,9 @@ export default function TrendingSkills() {
         {filtered.length === 0 && (
           <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
             <p className="text-4xl mb-3">🔍</p>
-            <p className="font-medium text-gray-500 dark:text-gray-400">No skills found in this category</p>
+            <p className="font-medium text-gray-500 dark:text-gray-400">
+              No skills found in this category
+            </p>
           </div>
         )}
       </div>
@@ -379,25 +482,48 @@ export default function TrendingSkills() {
           >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{selected.name}</h3>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">{selected.category}</p>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {selected.name}
+                </h3>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">
+                  {selected.category}
+                </p>
               </div>
-              <button 
-                onClick={() => setSelected(null)} 
+              <button
+                onClick={() => setSelected(null)}
                 className="text-gray-400 hover:text-gray-900 dark:hover:text-white bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
             </div>
 
-            <p className="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{selected.description}</p>
+            <p className="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              {selected.description}
+            </p>
 
             <div className="space-y-6">
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">🏢 Hiring Companies</p>
+                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                  🏢 Hiring Companies
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {selected.companies.map((c) => (
-                    <span key={c} className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-xl text-xs font-medium">
+                    <span
+                      key={c}
+                      className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-xl text-xs font-medium"
+                    >
                       {c}
                     </span>
                   ))}
@@ -406,17 +532,27 @@ export default function TrendingSkills() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-100 dark:border-yellow-900/40 rounded-xl p-4">
-                  <p className="text-xs font-semibold text-yellow-700 dark:text-yellow-400 uppercase tracking-wide">Avg Package</p>
-                  <p className="font-bold text-gray-900 dark:text-white text-lg mt-1">{selected.avgPackage}</p>
+                  <p className="text-xs font-semibold text-yellow-700 dark:text-yellow-400 uppercase tracking-wide">
+                    Avg Package
+                  </p>
+                  <p className="font-bold text-gray-900 dark:text-white text-lg mt-1">
+                    {selected.avgPackage}
+                  </p>
                 </div>
                 <div className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl p-4">
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Time to Learn</p>
-                  <p className="font-bold text-gray-900 dark:text-white text-lg mt-1">{selected.timeToLearn}</p>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                    Time to Learn
+                  </p>
+                  <p className="font-bold text-gray-900 dark:text-white text-lg mt-1">
+                    {selected.timeToLearn}
+                  </p>
                 </div>
               </div>
 
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">📚 Learning Resources</p>
+                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                  📚 Learning Resources
+                </p>
                 <div className="space-y-3">
                   {selected.resources.map((r) => (
                     <a
@@ -427,7 +563,19 @@ export default function TrendingSkills() {
                       className="flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-yellow-400 hover:shadow-sm text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-yellow-400 px-4 py-3 rounded-xl text-sm font-semibold transition-all group"
                     >
                       <span>{r.name}</span>
-                      <svg className="w-4 h-4 text-gray-400 group-hover:text-yellow-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-yellow-500 transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
                     </a>
                   ))}
                 </div>

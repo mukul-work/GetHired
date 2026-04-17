@@ -1,11 +1,35 @@
 // ── Tier badge metadata ───────────────────────────────────────────────────────
 export const TIER_META = {
-  "top-product": { label: "Top Product",    color: "text-yellow-700 bg-yellow-50 dark:text-yellow-400 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800" },
-  unicorn:        { label: "Unicorn",        color: "text-purple-700 bg-purple-50 dark:text-purple-400 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800" },
-  finance:        { label: "Finance",        color: "text-blue-700 bg-blue-50   dark:text-blue-400   dark:bg-blue-900/20   border-blue-200   dark:border-blue-800" },
-  consulting:     { label: "Consulting",     color: "text-cyan-700  bg-cyan-50  dark:text-cyan-400   dark:bg-cyan-900/20   border-cyan-200   dark:border-cyan-800" },
-  "indian-saas":  { label: "Indian SaaS",   color: "text-green-700 bg-green-50 dark:text-green-400  dark:bg-green-900/20  border-green-200  dark:border-green-800" },
-  "it-services":  { label: "IT Services",   color: "text-gray-600  bg-gray-100 dark:text-gray-400   dark:bg-gray-800      border-gray-200   dark:border-gray-700" },
+  "top-product": {
+    label: "Top Product",
+    color:
+      "text-yellow-700 bg-yellow-50 dark:text-yellow-400 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800",
+  },
+  unicorn: {
+    label: "Unicorn",
+    color:
+      "text-purple-700 bg-purple-50 dark:text-purple-400 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800",
+  },
+  finance: {
+    label: "Finance",
+    color:
+      "text-blue-700 bg-blue-50   dark:text-blue-400   dark:bg-blue-900/20   border-blue-200   dark:border-blue-800",
+  },
+  consulting: {
+    label: "Consulting",
+    color:
+      "text-cyan-700  bg-cyan-50  dark:text-cyan-400   dark:bg-cyan-900/20   border-cyan-200   dark:border-cyan-800",
+  },
+  "indian-saas": {
+    label: "Indian SaaS",
+    color:
+      "text-green-700 bg-green-50 dark:text-green-400  dark:bg-green-900/20  border-green-200  dark:border-green-800",
+  },
+  "it-services": {
+    label: "IT Services",
+    color:
+      "text-gray-600  bg-gray-100 dark:text-gray-400   dark:bg-gray-800      border-gray-200   dark:border-gray-700",
+  },
 };
 
 export const companies = [
@@ -517,4 +541,4 @@ export const companies = [
     tier: "it-services",
     history: [{ year: 2024, students: 22, avg: "7.5 LPA", highest: "10 LPA" }],
   },
-]
+];

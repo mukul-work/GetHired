@@ -4,7 +4,8 @@ export const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [dark, setDark] = useState(
-    () => localStorage.getItem("theme") === "dark" ||
+    () =>
+      localStorage.getItem("theme") === "dark" ||
       (!localStorage.getItem("theme") &&
         window.matchMedia("(prefers-color-scheme: dark)").matches),
   );

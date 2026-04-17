@@ -22,14 +22,18 @@ function BlogCard({ blog }) {
       <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         {blog.title}
       </h2>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">{blog.excerpt}</p>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+        {blog.excerpt}
+      </p>
       <div className="flex items-center justify-between">
         <p className="text-gray-400 dark:text-gray-500 text-xs">
           {blog.author} · {blog.batch} · {blog.branch}
         </p>
         <div className="flex items-center gap-3 text-xs text-gray-400">
           <span>{blog.readTime}</span>
-          <span className="text-yellow-600 dark:text-yellow-400 font-medium">Read →</span>
+          <span className="text-yellow-600 dark:text-yellow-400 font-medium">
+            Read →
+          </span>
         </div>
       </div>
     </div>

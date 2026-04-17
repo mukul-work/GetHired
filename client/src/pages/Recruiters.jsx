@@ -4,7 +4,13 @@ import { FiSearch } from "react-icons/fi";
 import { companies, TIER_META } from "../data/companies";
 
 const TIERS = ["all", ...Object.keys(TIER_META)];
-const DIFF_ORDER = { Easy: 1, "Easy-Medium": 2, Medium: 3, "Medium-Hard": 4, Hard: 5 };
+const DIFF_ORDER = {
+  Easy: 1,
+  "Easy-Medium": 2,
+  Medium: 3,
+  "Medium-Hard": 4,
+  Hard: 5,
+};
 
 function LogoImg({ src, domain, name }) {
   const srcs = [
@@ -48,7 +54,14 @@ export default function Recruiters() {
   }, [search, tier]);
 
   // Group by tier in a fixed order
-  const tierOrder = ["top-product", "unicorn", "finance", "consulting", "indian-saas", "it-services"];
+  const tierOrder = [
+    "top-product",
+    "unicorn",
+    "finance",
+    "consulting",
+    "indian-saas",
+    "it-services",
+  ];
   const grouped = tierOrder
     .map((t) => ({ tier: t, items: filtered.filter((c) => c.tier === t) }))
     .filter((g) => g.items.length > 0);
@@ -73,16 +86,29 @@ export default function Recruiters() {
           <div className="mt-6 flex flex-wrap gap-4">
             {[
               { label: "Companies", value: companies.length },
-              { label: "Top Product", value: companies.filter((c) => c.tier === "top-product").length },
-              { label: "Unicorns", value: companies.filter((c) => c.tier === "unicorn").length },
-              { label: "IT Services", value: companies.filter((c) => c.tier === "it-services").length },
+              {
+                label: "Top Product",
+                value: companies.filter((c) => c.tier === "top-product").length,
+              },
+              {
+                label: "Unicorns",
+                value: companies.filter((c) => c.tier === "unicorn").length,
+              },
+              {
+                label: "IT Services",
+                value: companies.filter((c) => c.tier === "it-services").length,
+              },
             ].map(({ label, value }) => (
               <div
                 key={label}
                 className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl px-4 py-2"
               >
-                <span className="text-xl font-bold text-yellow-500">{value}</span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
+                <span className="text-xl font-bold text-yellow-500">
+                  {value}
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
@@ -130,8 +156,18 @@ export default function Recruiters() {
         {/* ── Grouped grid ── */}
         {grouped.length === 0 ? (
           <div className="text-center py-24 text-gray-400 dark:text-gray-600">
-            <svg className="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-12 h-12 mx-auto mb-3 opacity-40"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             <p className="text-sm">No companies match your search</p>
           </div>
@@ -141,10 +177,14 @@ export default function Recruiters() {
               <section key={t}>
                 {/* Section heading */}
                 <div className="flex items-center gap-3 mb-4">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full border ${TIER_META[t].color}`}>
+                  <span
+                    className={`text-xs font-bold px-3 py-1 rounded-full border ${TIER_META[t].color}`}
+                  >
                     {TIER_META[t].label}
                   </span>
-                  <span className="text-xs text-gray-400 dark:text-gray-500">{items.length} companies</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500">
+                    {items.length} companies
+                  </span>
                   <div className="flex-1 h-px bg-gray-100 dark:bg-gray-800" />
                 </div>
 
@@ -158,7 +198,11 @@ export default function Recruiters() {
                     >
                       {/* Logo */}
                       <div className="flex items-center justify-center h-14">
-                        <LogoImg src={company.logo} domain={company.domain} name={company.name} />
+                        <LogoImg
+                          src={company.logo}
+                          domain={company.domain}
+                          name={company.name}
+                        />
                       </div>
 
                       {/* Name */}
@@ -180,8 +224,12 @@ export default function Recruiters() {
 
                       {/* Package */}
                       <div className="mt-auto pt-2 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-[11px]">
-                        <span className="text-gray-400 dark:text-gray-500">Avg</span>
-                        <span className="font-bold text-yellow-600 dark:text-yellow-400">{company.avgPackage}</span>
+                        <span className="text-gray-400 dark:text-gray-500">
+                          Avg
+                        </span>
+                        <span className="font-bold text-yellow-600 dark:text-yellow-400">
+                          {company.avgPackage}
+                        </span>
                       </div>
                     </button>
                   ))}

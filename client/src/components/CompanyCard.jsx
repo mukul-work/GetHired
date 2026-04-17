@@ -11,7 +11,12 @@ function LogoImg({ src, name }) {
       </div>
     );
   return (
-    <img src={src} alt={name} onError={() => setErr(true)} className="w-12 h-12 object-contain" />
+    <img
+      src={src}
+      alt={name}
+      onError={() => setErr(true)}
+      className="w-12 h-12 object-contain"
+    />
   );
 }
 
@@ -26,7 +31,9 @@ export default function CompanyCard({ company }) {
       <div className="flex items-center justify-between mb-1">
         <LogoImg src={company.logo} name={company.name} />
         {tier && (
-          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${tier.color}`}>
+          <span
+            className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${tier.color}`}
+          >
             {tier.label}
           </span>
         )}
@@ -34,10 +41,14 @@ export default function CompanyCard({ company }) {
       <h2 className="text-sm font-bold text-gray-800 dark:text-gray-100 group-hover:text-yellow-700 dark:group-hover:text-yellow-400 transition-colors line-clamp-2">
         {company.name}
       </h2>
-      <p className="text-xs text-gray-400 dark:text-gray-500">{company.domains.join(", ")}</p>
+      <p className="text-xs text-gray-400 dark:text-gray-500">
+        {company.domains.join(", ")}
+      </p>
       <div className="mt-auto pt-2 border-t border-gray-100 dark:border-gray-800 flex justify-between text-[11px]">
         <span className="text-gray-400 dark:text-gray-500">Avg</span>
-        <span className="font-bold text-yellow-600 dark:text-yellow-400">{company.avgPackage}</span>
+        <span className="font-bold text-yellow-600 dark:text-yellow-400">
+          {company.avgPackage}
+        </span>
       </div>
     </div>
   );

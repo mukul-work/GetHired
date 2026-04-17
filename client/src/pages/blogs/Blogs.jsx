@@ -62,9 +62,12 @@ function Blogs() {
       {/* Header */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">Placement Blogs</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+            Placement Blogs
+          </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            Interview experiences, tips, and career advice from your fellow students
+            Interview experiences, tips, and career advice from your fellow
+            students
           </p>
         </div>
       </div>

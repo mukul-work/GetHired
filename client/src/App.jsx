@@ -17,25 +17,25 @@ import TrendingSkills from "./pages/TrendingSkills";
 export default function App() {
   return (
     <ThemeProvider>
-    <ToastProvider>
-    <AuthProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/recruiters" element={<Recruiters />} />
-          <Route path="/recruiters/:id" element={<CompanyDetails />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/:id" element={<BlogPost />} />
-          <Route path="/calendar" element={<PlacementCalendar />} />
-          <Route path="/skills" element={<TrendingSkills />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
-    </ToastProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/recruiters" element={<Recruiters />} />
+              <Route path="/recruiters/:id" element={<CompanyDetails />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/:id" element={<BlogPost />} />
+              <Route path="/calendar" element={<PlacementCalendar />} />
+              <Route path="/skills" element={<TrendingSkills />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 }
