@@ -1,14 +1,34 @@
 import express from "express";
 import multer from "multer";
 import jwt from "jsonwebtoken";
-import csvParser from "csv-parser";
-import { Readable } from "stream";
 import XLSX from "xlsx";
 import Placement from "../models/Placement.js";
 import { protect } from "../middleware/auth.js";
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
+
+// Normalise row keys to lowercase, no spaces
+function normRow(row) {
+  const r = {};
+  Object.keys(row).forEach((k) => {
+    r[k.trim().toLowerCase().replace(/\s+/g, "")] = String(row[k] ?? "").trim();
+  });
+  return r;
+}
+
+// Map normalised row → Placement fields
+function mapToPlacement(r) {
+  return {
+    studentName: r.studentname || r.student_name || r.name || r.student || "",
+    branch: r.branch || r.dept || r.department || "",
+    company: r.company || r.organisation || r.organization || "",
+    role: r.role || r.designation || r.position || r.jobrole || r.job_role || r.jobtitle || "",
+    package: parseFloat(r.package || r.pkg || r.ctc || r.salary || 0) || 0,
+    year: parseInt(r.year || r.batch || r.passingyear || r.graduationyear || new Date().getFullYear(), 10),
+    type: r.type || r.placementtype || r.placement_type || "On-Campus",
+  };
+}
 
 // POST /api/admin/login
 router.post("/login", (req, res) => {
@@ -24,71 +44,36 @@ router.post("/login", (req, res) => {
   }
 });
 
-// POST /api/admin/upload — upload CSV or Excel file with placements
+// POST /api/admin/upload — Excel only; OVERWRITES all placements
 router.post("/upload", protect, upload.single("file"), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
     const ext = req.file.originalname.split(".").pop().toLowerCase();
-    let records = [];
-
-    if (ext === "csv") {
-      await new Promise((resolve, reject) => {
-        const stream = Readable.from(req.file.buffer.toString());
-        stream
-          .pipe(csvParser())
-          .on("data", (row) => {
-            // Normalize keys to lower-case for case-insensitive matching
-            const r = {};
-            Object.keys(row).forEach((k) => { r[k.trim().toLowerCase()] = row[k]; });
-            records.push({
-              studentName: r.studentname || r.student_name || r.name || r.student || "",
-              branch: r.branch || r.dept || r.department || "",
-              company: r.company || r.organisation || r.organization || "",
-              role: r.role || r.designation || r.position || r.jobrole || r.job_role || "",
-              package: parseFloat(r.package || r.pkg || r.ctc || r.salary || 0),
-              year: parseInt(r.year || r.batch || r.passingyear || new Date().getFullYear()),
-              type: r.type || r.placementtype || "On-Campus",
-            });
-          })
-          .on("end", resolve)
-          .on("error", reject);
-      });
-    } else if (ext === "xlsx" || ext === "xls") {
-      const wb = XLSX.read(req.file.buffer, { type: "buffer" });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(ws);
-      records = rows.map((row) => {
-        // Normalize keys to lower-case for case-insensitive matching
-        const r = {};
-        Object.keys(row).forEach((k) => { r[k.trim().toLowerCase()] = row[k]; });
-        return {
-          studentName: r.studentname || r.student_name || r.name || r.student || "",
-          branch: r.branch || r.dept || r.department || "",
-          company: r.company || r.organisation || r.organization || "",
-          role: r.role || r.designation || r.position || r.jobrole || r.job_role || "",
-          package: parseFloat(r.package || r.pkg || r.ctc || r.salary || 0),
-          year: parseInt(r.year || r.batch || r.passingyear || new Date().getFullYear()),
-          type: r.type || r.placementtype || "On-Campus",
-        };
-      });
-    } else {
-      return res
-        .status(400)
-        .json({ message: "Unsupported file type. Use CSV or XLSX." });
+    if (ext !== "xlsx" && ext !== "xls") {
+      return res.status(400).json({ message: "Only Excel files (.xlsx or .xls) are allowed." });
     }
+
+    const wb = XLSX.read(req.file.buffer, { type: "buffer" });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
+    const records = rows.map((row) => mapToPlacement(normRow(row)));
 
     const validRecords = records.filter(
       (r) => r.studentName && r.branch && r.company && r.package > 0,
     );
-    if (!validRecords.length)
-      return res
-        .status(400)
-        .json({ message: "No valid records found in file" });
 
+    if (!validRecords.length) {
+      return res.status(400).json({
+        message: "No valid records found. Ensure columns: studentName, branch, company, role, package, year, type",
+      });
+    }
+
+    await Placement.deleteMany({});
     await Placement.insertMany(validRecords);
+
     res.json({
-      message: `Successfully inserted ${validRecords.length} records`,
+      message: `Database refreshed with ${validRecords.length} records (previous data cleared)`,
       count: validRecords.length,
     });
   } catch (err) {
@@ -96,7 +81,7 @@ router.post("/upload", protect, upload.single("file"), async (req, res) => {
   }
 });
 
-// DELETE /api/admin/placements/:id — delete a placement record
+// DELETE /api/admin/placements/:id
 router.delete("/placements/:id", protect, async (req, res) => {
   try {
     await Placement.findByIdAndDelete(req.params.id);
