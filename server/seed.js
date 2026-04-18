@@ -323,25 +323,42 @@ function randNum(min, max) {
 // Total ≈ 2975 / 350 = 8.5 LPA ✓
 
 const IT_SERVICE_NAMES = new Set([
-  "TCS","Infosys","Wipro","HCL Technologies","Tech Mahindra",
-  "Cognizant","Accenture","Capgemini","LTIMindtree","Zoho",
+  "TCS",
+  "Infosys",
+  "Wipro",
+  "HCL Technologies",
+  "Tech Mahindra",
+  "Cognizant",
+  "Accenture",
+  "Capgemini",
+  "LTIMindtree",
+  "Zoho",
 ]);
 const TOP_TIER_NAMES = new Set([
-  "Google","Microsoft","Amazon","Flipkart","Adobe","Atlassian",
-  "Nutanix","Salesforce","Razorpay","Goldman Sachs","Postman",
+  "Google",
+  "Microsoft",
+  "Amazon",
+  "Flipkart",
+  "Adobe",
+  "Atlassian",
+  "Nutanix",
+  "Salesforce",
+  "Razorpay",
+  "Goldman Sachs",
+  "Postman",
 ]);
 
 const itServiceCos = companies.filter((c) => IT_SERVICE_NAMES.has(c.name));
-const topTierCos   = companies.filter((c) => TOP_TIER_NAMES.has(c.name));
-const midTierCos   = companies.filter(
+const topTierCos = companies.filter((c) => TOP_TIER_NAMES.has(c.name));
+const midTierCos = companies.filter(
   (c) => !IT_SERVICE_NAMES.has(c.name) && !TOP_TIER_NAMES.has(c.name),
 );
 
 function weightedCompany() {
   const r = Math.random();
   if (r < 0.83) return rand(itServiceCos); // 83% → avg ~6.1 LPA
-  if (r < 0.96) return rand(midTierCos);   // 13% → avg ~14.9 LPA
-  return rand(topTierCos);                 //  4% → avg ~25 LPA
+  if (r < 0.96) return rand(midTierCos); // 13% → avg ~14.9 LPA
+  return rand(topTierCos); //  4% → avg ~25 LPA
   // Expected avg: 0.83*6.1 + 0.13*14.9 + 0.04*25 ≈ 8.0 LPA (+178 outlier → ~8.5)
 }
 
