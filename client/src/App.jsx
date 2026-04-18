@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { ToastProvider } from "./context/ToastContext";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ToastProvider } from "./context/ToastContext.jsx";
+import ThemeProvider from "./context/ThemeContext.jsx";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import PlacementCalendar from "./pages/PlacementCalendar";
 import TrendingSkills from "./pages/TrendingSkills";
-
+import EventsSection from "./components/EventsSection";
 export default function App() {
   return (
     <ThemeProvider>
@@ -28,6 +28,7 @@ export default function App() {
               <Route path="/recruiters/:id" element={<CompanyDetails />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/blogs/:id" element={<BlogPost />} />
+              <Route path="/events" element={<EventsSection />} />
               <Route path="/calendar" element={<PlacementCalendar />} />
               <Route path="/skills" element={<TrendingSkills />} />
               <Route path="/login" element={<Login />} />

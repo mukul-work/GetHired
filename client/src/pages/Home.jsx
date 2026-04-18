@@ -4,7 +4,7 @@ import RecentSeason from "../components/home/RecentSeason";
 import TopRecruiters from "../components/home/TopRecruiters";
 import BlogsPreview from "../components/home/BlogsPreview";
 import Footer from "../components/home/Footer";
-
+import EventsSection from "../components/EventsSection";
 function Home() {
   return(
     <div>
@@ -13,6 +13,7 @@ function Home() {
         <RecentSeason />
         <TopRecruiters />
         <BlogsPreview />
+        <EventsSection />
         <Footer />
     </div>
   )
