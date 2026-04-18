@@ -96,7 +96,7 @@ function RecentSeason() {
               <p className="text-xs text-gray-500">
                 {topPerformer.branch} · {topPerformer.company} ·{" "}
                 <span className="text-green-600 font-semibold">
-                  {topPerformer.package} LPA
+                  {(topPerformer.package >= 100)?(`${topPerformer.package/100} Cr`):(`${topPerformer.package} LPA`)}
                 </span>
               </p>
             </div>

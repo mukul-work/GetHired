@@ -147,7 +147,7 @@ function UploadingOverlay({ fileName }) {
           style={{ animation: "spin 0.8s linear infinite" }}
         />
         <div
-          className="absolute inset-[5px] rounded-full border-[2px] border-transparent border-t-yellow-300"
+          className="absolute inset-1.25 rounded-full border-2 border-transparent border-t-yellow-300"
           style={{ animation: "spin 1.4s linear infinite reverse" }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -183,7 +183,7 @@ function UploadingOverlay({ fileName }) {
           Uploading file…
         </p>
         {fileName && (
-          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 max-w-[220px] truncate">
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 max-w-55 truncate">
             {fileName}
           </p>
         )}
@@ -229,11 +229,11 @@ function UploadSection() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    onDropRejected: () => {
+      toast.error("Invalid file type", "Only Excel files (.xlsx or .xls) are allowed.", 5000);
+    },
     accept: {
-      "text/csv": [".csv"],
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-        ".xlsx",
-      ],
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
       "application/vnd.ms-excel": [".xls"],
     },
     multiple: false,
@@ -246,7 +246,9 @@ function UploadSection() {
         Upload Placement Data
       </h3>
       <p className="text-gray-500 dark:text-gray-400 text-sm mb-5">
-        Upload a CSV or Excel file with placement records. Columns:{" "}
+        Upload an <strong>Excel</strong> file (.xlsx or .xls).{" "}
+        <span className="text-yellow-600 dark:text-yellow-400 font-medium">⚠️ This overwrites all existing placement records.</span>{" "}
+        Required columns:{" "}
         <span className="font-mono text-gray-700 dark:text-gray-300">
           studentName, branch, company, role, package, year, type
         </span>
@@ -305,24 +307,23 @@ function UploadSection() {
                 or click to browse
               </p>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                Supported: .csv, .xlsx, .xls
+                Supported: .xlsx, .xls
               </p>
             </>
           )}
         </div>
       </div>
 
-      {/* CSV template hint */}
-      <div className="mt-4 bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">
-          Expected CSV/Excel Format:
+      {/* Format hint */}
+      <div className="mt-4 bg-gray-50 dark:bg-gray-800 rounded-xl p-4 space-y-2">
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400">
+          Expected Excel Column Headers:
         </p>
-        <code className="text-xs text-gray-500 dark:text-gray-400 font-mono">
-          studentName, branch, company, role, package, year, type
+        <code className="text-xs text-gray-500 dark:text-gray-400 font-mono block">
+          studentName &nbsp; branch &nbsp; company &nbsp; role &nbsp; package &nbsp; year &nbsp; type
         </code>
-        <br />
-        <code className="text-xs text-gray-400 dark:text-gray-500 font-mono">
-          Rahul Sharma, CSE, Google, Software Engineer, 42, 2024, On-Campus
+        <code className="text-xs text-gray-400 dark:text-gray-500 font-mono block">
+          Rahul Sharma &nbsp; CSE &nbsp; Google &nbsp; Software Engineer &nbsp; 42 &nbsp; 2024 &nbsp; On-Campus
         </code>
       </div>
     </div>
