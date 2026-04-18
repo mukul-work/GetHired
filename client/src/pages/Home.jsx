@@ -13,7 +13,7 @@ function Home() {
         <RecentSeason />
         <TopRecruiters />
         <BlogsPreview />
-        <EventsSection />
+        <EventsSection previewMode={true} />
         <Footer />
     </div>
   )

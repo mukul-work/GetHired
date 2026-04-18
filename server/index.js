@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import placementsRouter from "./routes/placements.js";
 import blogsRouter from "./routes/blogs.js";
 import adminRouter from "./routes/admin.js";
+import eventsRouter from "./routes/events.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/placements", placementsRouter);
 app.use("/api/blogs", blogsRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/events", eventsRouter);
 
 // Health check
 app.get("/api/health", (_, res) => {
@@ -38,7 +40,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-// Connect to MongoDB (non-blocking — server starts regardless)
 mongoose
   .connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 10000 })
   .then(() => console.log("Connected to MongoDB"))

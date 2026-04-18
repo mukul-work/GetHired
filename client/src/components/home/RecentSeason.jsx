@@ -6,6 +6,7 @@ import {
   getBranchChart,
 } from "../../services/api";
 import { formatPkg } from "../../utils/formatPkg";
+import { FaBuilding, FaGraduationCap, FaClipboardList, FaMoneyBillWave, FaTrophy } from "react-icons/fa";
 
 function RecentSeason() {
   const navigate = useNavigate();
@@ -35,17 +36,17 @@ function RecentSeason() {
   }, []);
 
   const cards = [
-    { label: "Top Company", value: topCompany, icon: "🏢" },
-    { label: "Top Branch", value: topBranch, icon: "🎓" },
+    { label: "Top Company", value: topCompany, icon: <FaBuilding size={22} className="text-blue-400" /> },
+    { label: "Top Branch", value: topBranch, icon: <FaGraduationCap size={22} className="text-gray-700 dark:text-gray-300" /> },
     {
       label: "Total Offers (2024)",
       value: `${stats.totalPlacements}+`,
-      icon: "📋",
+      icon: <FaClipboardList size={22} className="text-yellow-500" />,
     },
     {
       label: "Highest Package",
       value: formatPkg(stats.highestPackage),
-      icon: "💰",
+      icon: <FaMoneyBillWave size={22} className="text-yellow-500" />,
     },
   ];
 
@@ -75,7 +76,7 @@ function RecentSeason() {
               key={card.label}
               className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 text-center shadow-sm"
             >
-              <span className="text-2xl mb-2 block">{card.icon}</span>
+              <span className="flex justify-center mb-2">{card.icon}</span>
               <p className="text-lg font-bold text-gray-800 dark:text-white">
                 {card.value}
               </p>
@@ -88,7 +89,7 @@ function RecentSeason() {
 
         {topPerformer && (
           <div className="mt-4 bg-yellow-50 border border-yellow-100 rounded-2xl p-4 flex items-center gap-4">
-            <span className="text-3xl">🏆</span>
+            <FaTrophy size={28} className="text-yellow-500 shrink-0" />
             <div>
               <p className="text-sm font-bold text-gray-800">
                 Top Performer — {topPerformer.studentName}
