@@ -275,11 +275,11 @@ function EventCard({ event, isAdmin, onEdit, onDelete }) {
               {deadline !== null && deadline < 0 ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><FiSlash size={12}/> Deadline passed</span> : deadline === 0 ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><MdWarning size={13}/> Due today!</span> : deadline !== null ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><MdAccessTime size={13}/> {deadline}d left</span> : ""}
             </span>
           )}
-          {event.registrationLink && event.registrationLink !== "#" ? (
+          {(deadline !== null && deadline > 0) ? event.registrationLink && event.registrationLink !== "#" ? (
             <a href={event.registrationLink} className="event-register-btn" target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:6}}>Register Now <FiArrowRight size={13}/></a>
           ) : (
             <button className="event-register-btn" onClick={() => toast.info("Coming Soon!", "Registration for this event will open soon. Stay tuned!")} style={{display:"inline-flex",alignItems:"center",gap:6,cursor:"pointer",border:"none"}}>Register Now <FiArrowRight size={13}/></button>
-          )}
+          ): ""}
         </div>
       </div>
     </div>
