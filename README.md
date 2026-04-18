@@ -39,7 +39,7 @@ GetHired gives students visibility into placement trends at their institution an
 GetHired/
 ├── client/     # React frontend
 ├── server/     # Express backend
-└── package.json
+└── README.md
 ```
 
 ---
@@ -48,7 +48,7 @@ GetHired/
 
 ### Prerequisites
 - Node.js v18+
-- MongoDB (Atlas or local)
+- MongoDB (Atlas)
 
 ### Installation
 
@@ -56,9 +56,6 @@ GetHired/
 # Clone the repo
 git clone https://github.com/mukul-work/GetHired.git
 cd GetHired
-
-# Install root dependencies
-npm install
 
 # Install client dependencies
 cd client && npm install
@@ -80,10 +77,6 @@ JWT_SECRET=your_jwt_secret
 ### Running the App
 
 ```bash
-# From root — run both client and server (if concurrently is configured)
-npm run dev
-
-# Or separately:
 cd server && npm run dev   # Backend on http://localhost:5000
 cd client && npm run dev   # Frontend on http://localhost:5173
 ```
@@ -98,6 +91,10 @@ client/
 │   ├── components/
 │   ├── pages/
 │   ├── context/
+|   ├── utils/
+|   ├── data/
+|   ├── services/
+|   ├── App.jsx
 │   └── main.jsx
 
 server/
@@ -105,26 +102,20 @@ server/
 ├── controllers/
 ├── models/
 ├── middleware/
-└── index.js
+├── index.js
+├── seed.js
+├── eventSeed.js
+└── package.json
+
 ```
 
 ---
 
-## Contributing
+## Contributors
 
-This project is being built as a team project for handoff to the college placement cell. If you're a contributor:
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes
-4. Open a pull request against `main`
-
----
-
-## License
-
-MIT
-
----
-
-Built by [Mukul](https://github.com/mukul-work) and contributors.
+| | Name | GitHub |
+|---|---|---|
+| | Mukul | [@mukul-work](https://github.com/mukul-work) |
+| | Mahan Singh Rajput | [@MahanSinghRajput](https://github.com/MahanSinghRajput) |
+| | Krrish Singhal | [@krrish-singhal](https://github.com/krrish-singhal) |
+| | Mayank Dhingra | [@MayankDhingra77](https://github.com/MayankDhingra77) |
