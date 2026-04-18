@@ -1,6 +1,10 @@
 // client/src/pages/PlacementCalendar.jsx
 // NEW FEATURE: Placement Calendar — upcoming drives, deadlines, PPTs
 import { useState } from "react";
+import {
+  FaCalendarAlt, FaRocket, FaLaptop, FaMicrophone,
+  FaStar, FaUsers, FaBuilding, FaCalendarCheck, FaCheckCircle, FaInbox,
+} from "react-icons/fa";
 
 const EVENTS = [
   {
@@ -210,7 +214,7 @@ export default function PlacementCalendar() {
   const past = filtered.filter((e) => daysLeft(e.date) < 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
       {/* Header */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-5">
@@ -231,25 +235,25 @@ export default function PlacementCalendar() {
               label: "Total Events",
               value: EVENTS.length,
               color: "text-gray-900",
-              icon: "🗓️",
+              icon: <FaCalendarAlt className="text-gray-500" size={18} />,
             },
             {
               label: "Drives",
               value: EVENTS.filter((e) => e.type === "Drive").length,
               color: "text-green-600",
-              icon: "🚀",
+              icon: <FaRocket className="text-green-500" size={18} />,
             },
             {
               label: "Online Tests",
               value: EVENTS.filter((e) => e.type === "Online Test").length,
               color: "text-blue-600",
-              icon: "💻",
+              icon: <FaLaptop className="text-blue-500" size={18} />,
             },
             {
               label: "PPTs",
               value: EVENTS.filter((e) => e.type === "PPT").length,
               color: "text-purple-600",
-              icon: "🎤",
+              icon: <FaMicrophone className="text-purple-500" size={18} />,
             },
           ].map((s) => (
             <div
@@ -260,7 +264,7 @@ export default function PlacementCalendar() {
                 <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
                   {s.label}
                 </p>
-                <span className="text-xl">{s.icon}</span>
+                <span className="flex items-center">{s.icon}</span>
               </div>
               <p className={`text-3xl font-bold ${s.color}`}>{s.value}</p>
             </div>
@@ -325,13 +329,10 @@ export default function PlacementCalendar() {
                         : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
                     }`}
                   >
-                    {t === "dream"
-                      ? "⭐ Dream"
-                      : t === "mass"
-                        ? "👥 Mass"
-                        : t === "normal"
-                          ? "🏢 Normal"
-                          : "All"}
+                    {t === "dream" ? <span className="flex items-center gap-1"><FaStar size={10} />Dream</span>
+                      : t === "mass" ? <span className="flex items-center gap-1"><FaUsers size={10} />Mass</span>
+                      : t === "normal" ? <span className="flex items-center gap-1"><FaBuilding size={10} />Normal</span>
+                      : "All"}
                   </button>
                 ))}
               </div>
@@ -342,8 +343,8 @@ export default function PlacementCalendar() {
         {/* Upcoming Events */}
         {upcoming.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-              📅 Upcoming ({upcoming.length})
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <FaCalendarCheck className="text-yellow-500" size={18} /> Upcoming ({upcoming.length})
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {upcoming.map((event) => {
@@ -385,11 +386,9 @@ export default function PlacementCalendar() {
                       <span
                         className={`text-[10px] uppercase tracking-wide font-bold px-2.5 py-1 rounded-full ${TAG_BADGE[event.tag]}`}
                       >
-                        {event.tag === "dream"
-                          ? "⭐ Dream"
-                          : event.tag === "mass"
-                            ? "👥 Mass"
-                            : "🏢 Normal"}
+                        {event.tag === "dream" ? <span className="flex items-center gap-1"><FaStar size={9} />Dream</span>
+                          : event.tag === "mass" ? <span className="flex items-center gap-1"><FaUsers size={9} />Mass</span>
+                          : <span className="flex items-center gap-1"><FaBuilding size={9} />Normal</span>}
                       </span>
                     </div>
 
@@ -449,8 +448,8 @@ export default function PlacementCalendar() {
         {/* Past Events */}
         {past.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 mt-8">
-              ✅ Past Events ({past.length})
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 mt-8 flex items-center gap-2">
+              <FaCheckCircle className="text-green-500" size={18} /> Past Events ({past.length})
             </h2>
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="overflow-x-auto">
@@ -496,7 +495,7 @@ export default function PlacementCalendar() {
 
         {filtered.length === 0 && (
           <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-            <p className="text-4xl mb-3">📭</p>
+            <FaInbox className="mx-auto mb-3 text-gray-300 dark:text-gray-600" size={48} />
             <p className="font-medium text-gray-500 dark:text-gray-400">
               No events match your filters
             </p>
