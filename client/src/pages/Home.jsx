@@ -6,15 +6,15 @@ import BlogsPreview from "../components/home/BlogsPreview";
 import Footer from "../components/home/Footer";
 import EventsSection from "../components/EventsSection";
 function Home() {
-  return(
+  return (
     <div>
-        <Hero />
-        <StatsBar />
-        <RecentSeason />
-        <TopRecruiters />
-        <BlogsPreview />
-        <EventsSection previewMode={true} />
-        <Footer />
+      <Hero />
+      <StatsBar />
+      <RecentSeason />
+      <TopRecruiters />
+      <BlogsPreview />
+      <EventsSection previewMode={true} />
+      <Footer />
     </div>
   )
 }

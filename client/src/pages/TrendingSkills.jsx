@@ -346,11 +346,10 @@ export default function TrendingSkills() {
                 <button
                   key={c}
                   onClick={() => setActiveCategory(c)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                    activeCategory === c
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${activeCategory === c
                       ? "bg-yellow-400 text-gray-900 border border-transparent"
                       : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                  }`}
+                    }`}
                 >
                   {c}
                 </button>

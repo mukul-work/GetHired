@@ -283,11 +283,10 @@ export default function PlacementCalendar() {
                   <button
                     key={b}
                     onClick={() => setFilterBranch(b)}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                      filterBranch === b
+                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${filterBranch === b
                         ? "bg-yellow-400 text-gray-900 border border-transparent"
                         : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                    }`}
+                      }`}
                   >
                     {b}
                   </button>
@@ -303,11 +302,10 @@ export default function PlacementCalendar() {
                   <button
                     key={t}
                     onClick={() => setFilterType(t)}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                      filterType === t
+                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${filterType === t
                         ? "bg-yellow-400 text-gray-900 border border-transparent"
                         : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                    }`}
+                      }`}
                   >
                     {t}
                   </button>
@@ -323,16 +321,15 @@ export default function PlacementCalendar() {
                   <button
                     key={t}
                     onClick={() => setFilterTag(t)}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors capitalize ${
-                      filterTag === t
+                    className={`px-4 py-2 rounded-xl text-xs font-semibold transition-colors capitalize ${filterTag === t
                         ? "bg-yellow-400 text-gray-900 border border-transparent"
                         : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                    }`}
+                      }`}
                   >
                     {t === "dream" ? <span className="flex items-center gap-1"><FaStar size={10} />Dream</span>
                       : t === "mass" ? <span className="flex items-center gap-1"><FaUsers size={10} />Mass</span>
-                      : t === "normal" ? <span className="flex items-center gap-1"><FaBuilding size={10} />Normal</span>
-                      : "All"}
+                        : t === "normal" ? <span className="flex items-center gap-1"><FaBuilding size={10} />Normal</span>
+                          : "All"}
                   </button>
                 ))}
               </div>
@@ -388,7 +385,7 @@ export default function PlacementCalendar() {
                       >
                         {event.tag === "dream" ? <span className="flex items-center gap-1"><FaStar size={9} />Dream</span>
                           : event.tag === "mass" ? <span className="flex items-center gap-1"><FaUsers size={9} />Mass</span>
-                          : <span className="flex items-center gap-1"><FaBuilding size={9} />Normal</span>}
+                            : <span className="flex items-center gap-1"><FaBuilding size={9} />Normal</span>}
                       </span>
                     </div>
 
@@ -418,13 +415,12 @@ export default function PlacementCalendar() {
                         </p>
                       </div>
                       <span
-                        className={`text-xs font-bold px-3 py-1.5 rounded-lg border ${
-                          days <= 3
+                        className={`text-xs font-bold px-3 py-1.5 rounded-lg border ${days <= 3
                             ? "bg-red-50 text-red-700 border-red-200"
                             : days <= 7
                               ? "bg-orange-50 text-orange-700 border-orange-200"
                               : "bg-green-50 text-green-700 border-green-200"
-                        }`}
+                          }`}
                       >
                         {days === 0 ? "Today!" : `${days}d left`}
                       </span>

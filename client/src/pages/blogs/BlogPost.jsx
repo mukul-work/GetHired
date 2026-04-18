@@ -54,10 +54,10 @@ function BlogPost() {
 
   const formattedDate = blog.date
     ? new Date(blog.date).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
     : "";
 
   return (

@@ -136,11 +136,10 @@ export default function Recruiters() {
               <button
                 key={t}
                 onClick={() => setTier(t)}
-                className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
-                  tier === t
+                className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${tier === t
                     ? "bg-yellow-400 text-gray-900 border-yellow-400 shadow-sm"
                     : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-yellow-300 dark:hover:border-yellow-700"
-                }`}
+                  }`}
               >
                 {t === "all" ? "All" : TIER_META[t].label}
               </button>

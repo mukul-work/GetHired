@@ -254,7 +254,7 @@ function Blogs() {
         if (data.data) setBlogs(data.data);
         if (data.allTags?.length) setAllTags(data.allTags);
       })
-      .catch(() => {});
+      .catch(() => { });
   };
 
   // After delete, remove from local state instantly
@@ -301,11 +301,10 @@ function Blogs() {
         <div className="flex gap-2 mb-6 flex-wrap">
           <button
             onClick={() => setSelectedTag("")}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
-              selectedTag === ""
+            className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${selectedTag === ""
                 ? "bg-yellow-400 text-gray-900 border-yellow-400"
                 : "text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-yellow-300 dark:hover:border-yellow-700 bg-white dark:bg-gray-800"
-            }`}
+              }`}
           >
             All
           </button>
@@ -313,11 +312,10 @@ function Blogs() {
             <button
               key={tag}
               onClick={() => setSelectedTag(tag === selectedTag ? "" : tag)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
-                selectedTag === tag
+              className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${selectedTag === tag
                   ? "bg-yellow-400 text-gray-900 border-yellow-400"
                   : "text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-yellow-300 dark:hover:border-yellow-700 bg-white dark:bg-gray-800"
-              }`}
+                }`}
             >
               {tag}
             </button>

@@ -1910,7 +1910,7 @@ export const eventsData = [
 ];
 
 export const filterOptions = [
-  { key: "all", label: "All Events"},
+  { key: "all", label: "All Events" },
   { key: "hackathon", label: "Hackathons" },
   { key: "workshop", label: "Workshops" },
   { key: "placement", label: "Placement Drives" },

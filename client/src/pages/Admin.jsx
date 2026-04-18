@@ -256,13 +256,12 @@ function UploadSection() {
 
       <div
         {...getRootProps()}
-        className={`border-2 border-dashed rounded-xl p-10 text-center transition-all ${
-          uploading
+        className={`border-2 border-dashed rounded-xl p-10 text-center transition-all ${uploading
             ? "border-yellow-300 bg-yellow-50/60 cursor-not-allowed"
             : isDragActive
               ? "border-yellow-400 bg-yellow-50 dark:bg-yellow-900/10 cursor-copy"
               : "border-gray-200 dark:border-gray-700 hover:border-yellow-300 hover:bg-gray-50/60 dark:hover:bg-gray-800/40 cursor-pointer"
-        }`}
+          }`}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-3">
@@ -453,7 +452,7 @@ export default function Admin() {
       {showBlogModal && (
         <AddBlogModal
           onClose={() => setShowBlogModal(false)}
-          onSuccess={() => {}}
+          onSuccess={() => { }}
         />
       )}
     </div>
