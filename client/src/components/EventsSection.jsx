@@ -10,6 +10,7 @@ import { RiPushpinFill, RiShuffleLine } from "react-icons/ri";
 import { IoSearchSharp } from "react-icons/io5";
 import { FiEdit2, FiTrash2, FiPlus, FiX, FiSearch, FiArrowRight, FiSlash } from "react-icons/fi";
 import { MdWarning, MdAccessTime } from "react-icons/md";
+import { useToast } from "../context/useToast";
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
@@ -228,6 +229,7 @@ function DeleteConfirm({ event, onClose, onDeleted }) {
 // ─── EventCard ─────────────────────────────────────────────────────────────────
 
 function EventCard({ event, isAdmin, onEdit, onDelete }) {
+  const toast = useToast();
   const colors = TYPE_COLORS[event.type] || TYPE_COLORS.hackathon;
   const deadline = daysLeft(event.deadline);
 
@@ -273,7 +275,11 @@ function EventCard({ event, isAdmin, onEdit, onDelete }) {
               {deadline !== null && deadline < 0 ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><FiSlash size={12}/> Deadline passed</span> : deadline === 0 ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><MdWarning size={13}/> Due today!</span> : deadline !== null ? <span style={{display:"inline-flex",alignItems:"center",gap:4}}><MdAccessTime size={13}/> {deadline}d left</span> : ""}
             </span>
           )}
-          <a href={event.registrationLink} className="event-register-btn" target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:6}}>Register Now <FiArrowRight size={13}/></a>
+          {event.registrationLink && event.registrationLink !== "#" ? (
+            <a href={event.registrationLink} className="event-register-btn" target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:6}}>Register Now <FiArrowRight size={13}/></a>
+          ) : (
+            <button className="event-register-btn" onClick={() => toast.info("Coming Soon!", "Registration for this event will open soon. Stay tuned!")} style={{display:"inline-flex",alignItems:"center",gap:6,cursor:"pointer",border:"none"}}>Register Now <FiArrowRight size={13}/></button>
+          )}
         </div>
       </div>
     </div>
@@ -285,6 +291,7 @@ function EventCard({ event, isAdmin, onEdit, onDelete }) {
 export default function EventsSection({ previewMode = false }) {
   const { isAdmin } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("all");

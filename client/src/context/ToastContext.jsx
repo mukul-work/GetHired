@@ -201,7 +201,7 @@ export function ToastProvider({ children }) {
     <ToastContext.Provider value={api}>
       {children}
       {/* Portal */}
-      <div className="fixed bottom-6 right-6 z-9999 flex flex-col gap-2.5 items-end pointer-events-none">
+      <div className="fixed top-6 right-6 z-[9999] flex flex-col gap-2.5 items-end pointer-events-none">
         {toasts.map((t) => (
           <div key={t.id} className="pointer-events-auto">
             <Toast {...t} onRemove={remove} />
